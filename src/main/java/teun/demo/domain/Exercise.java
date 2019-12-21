@@ -8,7 +8,6 @@ import javax.persistence.Id;
 @Data
 public class Exercise {
 
-    @Id
     private String id;
 
     private String name;

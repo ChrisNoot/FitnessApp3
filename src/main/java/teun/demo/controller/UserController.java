@@ -13,7 +13,8 @@ import teun.demo.repository.UserRepository;
 @RequestMapping("/user")
 public class UserController {
 
-    private final UserRepository userRepo;
+
+    private UserRepository userRepo;
 
     @Autowired
     public UserController(UserRepository userRepo) {
@@ -30,10 +31,10 @@ public class UserController {
         return "userForm";
     }
 
-    @PostMapping()
-    public String processNewUser(User user) {
+    @PostMapping("/new")
+    public String processNewUser(@ModelAttribute User user) {
         userRepo.save(user);
-        return "";
+        return "redirect:/user/new";
     }
 
     @ModelAttribute(name = "user")

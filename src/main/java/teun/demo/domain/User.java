@@ -1,6 +1,8 @@
 package teun.demo.domain;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -8,12 +10,13 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor(access =  AccessLevel.PUBLIC,force = true)
 @Data
-@Table(name = "user_table")
+@Table(name="userTable")
 public class User {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
     private Date createdAt;
@@ -36,10 +39,6 @@ public class User {
     @NotNull
     private String weight;
 
-    @ManyToMany(targetEntity = Category.class)
-    private List<Category> listOfCategories;
-
-    @PrePersist
     public void createdAt() {
         createdAt = new Date();
     }
