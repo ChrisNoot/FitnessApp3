@@ -13,19 +13,26 @@
     <a th:href="@{/user/new}" id="another">Create another user</a><br/>
 
     <h2>Please enter data your here: </h2>
-    <label for="name"> Name: </label>
-    <input type="text" th:field="*{name}"/>
+    <label for="naam"> Naam: </label>
+    <input type="text" th:field="*{naam}"/>
     <span class="validationError"
-          th:if="${#fields.hasErrors('name')}"
-          th:errors="*{name}">Name error</span>
+          th:if="${#fields.hasErrors('naam')}"
+          th:errors="*{naam}">Naam error</span>
 
     <br/>
 
-    <label for="address"> Address: </label>
-    <input type="text" th:field="*{address}"/>
+    <label for="gebruikersnaam"> Gebruikersnaam: </label>
+    <input type="text" th:field="*{gebruikersnaam}"/>
     <span class="validationError"
-          th:if="${#fields.hasErrors('address')}"
-          th:errors="*{address}">Address error</span>
+          th:if="${#fields.hasErrors('gebruikersnaam')}"
+          th:errors="*{gebruikersnaam}">gebruikersnaam error</span>
+    <br/>
+
+    <label for="geboortedatum"> Geboortedatum: </label>
+    <input type="text" th:field="*{geboortedatum}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('geboortedatum')}"
+          th:errors="*{geboortedatum}">Geboortedatum error</span>
 
     <br/>
 
@@ -37,26 +44,25 @@
 
     <br/>
 
-    <label for="dateOfBirth"> Date of birth: </label>
-    <input type="text" th:field="*{dateOfBirth}"/>
+    <label for="lengte"> Length: </label>
+    <input type="text" th:field="*{lengte}"/>
     <span class="validationError"
-          th:if="${#fields.hasErrors('dateOfBirth')}"
-          th:errors="*{dateOfBirth}">Date of birth error</span>
-
+          th:if="${#fields.hasErrors('lengte')}"
+          th:errors="*{lengte}">lengte error</span>
     <br/>
 
-    <label for="length"> Length: </label>
-    <input type="text" th:field="*{length}"/>
+    <label for="gewicht"> Gewicht: </label>
+    <input type="text" th:field="*{gewicht}"/>
     <span class="validationError"
-          th:if="${#fields.hasErrors('length')}"
-          th:errors="*{length}">length error</span>
+          th:if="${#fields.hasErrors('gewicht')}"
+          th:errors="*{gewicht}">Gewicht error</span>
     <br/>
 
-    <label for="weight"> Weight: </label>
-    <input type="text" th:field="*{weight}"/>
+    <label for="telefoonnummer"> Telefoonnummer: </label>
+    <input type="text" th:field="*{telefoonnummer}"/>
     <span class="validationError"
-          th:if="${#fields.hasErrors('weight')}"
-          th:errors="*{weight}">weight error</span>
+          th:if="${#fields.hasErrors('telefoonnummer')}"
+          th:errors="*{telefoonnummer}">Telefoonnummer error</span>
     <br/>
 
 

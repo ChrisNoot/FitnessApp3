@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.List;
 
@@ -21,24 +21,28 @@ public class User {
 
     private Date createdAt;
 
-    @NotNull
-    private String name;
+    @NotBlank(message="Gebruikersnaam error, gebruik een andere")
+    private String naam;
 
-    @NotNull
-    private String address;
+    @Pattern(regexp="^\\S*$", message = "Gebruikersnaam moet uit 1 woord bestaan")
+    @NotBlank(message="Dit veld mag niet leeg zijn")
+    private String gebruikersnaam;
 
-    @NotNull
+    private String gewicht;
+    private String lengte;
+
+    @Pattern(regexp="((0[1-9]|[12]\\d|3[01])-(0[1-9]|1[0-2])-[12]\\d{3})",message = "Gebruik het format dd-mm-jjjj")
+    private String geboortedatum;
+
+    @NotBlank
+    @Email(message = "Gebruik een correcte email")
     private String email;
 
-    @NotNull
-    private String dateOfBirth;
+    @Pattern(regexp="^0[67]\\d{8}$", message="Gebruik een 06 nummer")
+    private String telefoonnummer;
 
-    @NotNull
-    private String length;
-
-    @NotNull
-    private String weight;
-
+    
+    @PrePersist
     public void createdAt() {
         createdAt = new Date();
     }

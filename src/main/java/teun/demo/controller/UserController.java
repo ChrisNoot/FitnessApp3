@@ -2,12 +2,15 @@ package teun.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import teun.demo.domain.User;
 import teun.demo.repository.UserRepository;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/user")
@@ -32,9 +35,13 @@ public class UserController {
     }
 
     @PostMapping("/new")
-    public String processNewUser(@ModelAttribute User user) {
+    public String processNewUser(@ModelAttribute @Valid User user, Errors errors) {
+        if (errors.hasErrors()) {
+            return "userForm";
+        }
+
         userRepo.save(user);
-        return "redirect:/user/new";
+        return "userCreated";
     }
 
     @ModelAttribute(name = "user")
