@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.DayOfWeek;
 import java.util.Date;
 import java.util.List;
 
@@ -15,11 +16,15 @@ import java.util.List;
 public class Group {
 
     @Id
-    private String id;
+    private Long id;
 
     private Date createdAt;
+    private String hourTime;
+    private Day day;
+    public enum Day {
+        MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+    }
 
-    private Date time;
     @ManyToMany
     private List<User> listOfUsers;
 
@@ -27,4 +32,5 @@ public class Group {
     public void createdAt() {
         this.createdAt = new Date();
     }
+
 }
