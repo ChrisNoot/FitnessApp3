@@ -9,28 +9,35 @@ import java.time.DayOfWeek;
 import java.util.Date;
 import java.util.List;
 
+@Data
 @NoArgsConstructor(access =  AccessLevel.PUBLIC,force = true)
 @Entity
-@Data
 @Table(name = "groupTable")
 public class Group {
 
     @Id
     private Long id;
-
     private Date createdAt;
     private String hourTime;
     private Day day;
+
+    public Group(long l, String s, Date date, Day day) {
+        this.id = l;
+        this.createdAt = date;
+        this.hourTime = s;
+        this.day = day;
+    }
+
+
     public enum Day {
         MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
     }
 
-    @ManyToMany
-    private List<User> listOfUsers;
+    @ManyToMany(targetEntity=User.class)
+    private List<User> users;
 
     @PrePersist
     public void createdAt() {
         this.createdAt = new Date();
     }
-
 }

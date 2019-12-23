@@ -41,7 +41,6 @@ public class User {
     @Pattern(regexp="^0[67]\\d{8}$", message="Gebruik een 06 nummer")
     private String telefoonnummer;
 
-
     @PrePersist
     public void createdAt() {
         createdAt = new Date();

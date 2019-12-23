@@ -8,7 +8,7 @@
 <h1>Kies je groep:</h1>
 <div class="grid">
     <div class="ingredient-group" id="monday">
-        <h2>Maandag:</h2>
+        <div>Maandag:</div>
         <div th:each="group : ${monday}">
             <input name="hours" type="checkbox" th:value="${hour}"/>
             <span th:text="${group.hourTime}">hourTime</span><br/>
@@ -16,8 +16,48 @@
     </div>
 
     <div class="ingredient-group" id="tuesday">
-        <h2>Dinsdag:</h2>
+        <div>Dinsdag:</div>
         <div th:each="group : ${tuesday}">
+            <input name="hours" type="checkbox" th:value="${hour}"/>
+            <span th:text="${group.hourTime}">hourTime</span><br/>
+        </div>
+    </div>
+
+    <div class="ingredient-group" id="wednesday">
+        <div>Woensdag:</div>
+        <div th:each="group : ${wednesday}">
+            <input name="hours" type="checkbox" th:value="${hour}"/>
+            <span th:text="${group.hourTime}">hourTime</span><br/>
+        </div>
+    </div>
+
+    <div class="ingredient-group" id="thursday">
+        <div>Donderdag:</div>
+        <div th:each="group : ${thursday}">
+            <input name="hours" type="checkbox" th:value="${hour}"/>
+            <span th:text="${group.hourTime}">hourTime</span><br/>
+        </div>
+    </div>
+
+    <div class="ingredient-group" id="friday">
+        <div>Vrijdag:</div>
+        <div th:each="group : ${friday}">
+            <input name="hours" type="checkbox" th:value="${hour}"/>
+            <span th:text="${group.hourTime}">hourTime</span><br/>
+        </div>
+    </div>
+
+    <div class="ingredient-group" id="saturday">
+        <div>Zaterdag:</div>
+        <div th:each="group : ${saturday}">
+            <input name="hours" type="checkbox" th:value="${hour}"/>
+            <span th:text="${group.hourTime}">hourTime</span><br/>
+        </div>
+    </div>
+
+    <div class="ingredient-group" id="sunday">
+        <div>Zondag:</div>
+        <div th:each="group : ${sunday}">
             <input name="hours" type="checkbox" th:value="${hour}"/>
             <span th:text="${group.hourTime}">hourTime</span><br/>
         </div>
