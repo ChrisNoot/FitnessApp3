@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import teun.demo.domain.Group;
 import teun.demo.domain.Group.Day;
 import teun.demo.repository.GroupRepository;
+import teun.demo.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,6 +52,6 @@ public class GroupController {
 
     @GetMapping("/new")
     public String createGroup() {
-        return
+        return "createGroup";
     }
 }

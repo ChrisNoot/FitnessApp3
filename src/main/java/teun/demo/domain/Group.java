@@ -33,11 +33,12 @@ public class Group {
         MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
     }
 
-    @ManyToMany(targetEntity=User.class)
-    private List<User> users;
-
     @PrePersist
     public void createdAt() {
         this.createdAt = new Date();
+    }
+
+    public String toString() {
+        return day.toString().toLowerCase() +" "+ hourTime;
     }
 }
