@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -41,8 +42,9 @@ public class User {
     @Pattern(regexp="^0[67]\\d{8}$", message="Gebruik een 06 nummer")
     private String telefoonnummer;
 
-    @ManyToMany(targetEntity=User.class)
-    private List<User> groups;
+    @ManyToMany(targetEntity=Group.class)
+    private List<Group> groups = new ArrayList<>();
+
 
     @PrePersist
     public void createdAt() {

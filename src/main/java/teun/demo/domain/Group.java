@@ -41,4 +41,6 @@ public class Group {
     public String toString() {
         return day.toString().toLowerCase() +" "+ hourTime;
     }
+
+
 }
