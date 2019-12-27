@@ -65,13 +65,13 @@
           th:errors="*{telefoonnummer}">Telefoonnummer error</span>
     <br/>
 
-    <span>Groep:</span>
 
-
-    <select>
-        <option th:each="group : ${allGroups}" th:value="${group.id}" th:text="${group.toString()}"></option>
-    </select>
-    <br/>
+    <div>
+        <div th:each="group : ${allGroups}">
+            <input name="groups" type="checkbox" th:value="${group.id}"/>
+            <span th:text="${group.toString()}"></span><br/>
+        </div>
+    </div>
 
     <input type="submit" value="Create user"/>
 

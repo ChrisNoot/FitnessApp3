@@ -39,16 +39,16 @@ public class User {
     @Email(message = "Gebruik een correcte email")
     private String email;
 
-    @Pattern(regexp="^0[67]\\d{8}$", message="Gebruik een 06 nummer")
+    @Pattern(regexp="^06\\d{8}$", message="Gebruik een 06 nummer")
     private String telefoonnummer;
-
-    @ManyToMany(targetEntity=Group.class)
-    private List<Group> groups = new ArrayList<>();
-
 
     @PrePersist
     public void createdAt() {
         createdAt = new Date();
     }
+
+    @ManyToMany(targetEntity = Group.class)
+    @Size(min = 1, message = "Kies minimaal 1 groep.")
+    private List<Long> groups = new ArrayList<>();
 
 }

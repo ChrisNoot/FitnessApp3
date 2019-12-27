@@ -44,14 +44,11 @@ public class UserController {
     }
 
     @PostMapping("/new")
-    public String processNewUser(@ModelAttribute @Valid User user, @ModelAttribute Group group, Errors errors) {
+    public String processNewUser(@ModelAttribute @Valid User user, Errors errors) {
         if (errors.hasErrors()) {
             return "userForm";
         }
-
-        log.info(group.getDay().toString());
-        log.info(group.getHourTime());
-
+        log.info(user.getGroups().toString());
         userRepository.save(user);
         return "userCreated";
     }
@@ -61,11 +58,6 @@ public class UserController {
         return new User();
     }
 
-    @ModelAttribute(name = "chosenGroups")
-    public List<Group> newGroup() {
-        List<Group> groups = new ArrayList<>();
-        return groups;
-    }
 
     @ModelAttribute(name = "allGroups")
     public List<Group> showGroups() {
@@ -73,4 +65,5 @@ public class UserController {
         this.groupRepository.findAll().forEach(e -> groups.add(e));
         return groups;
     }
+
 }
