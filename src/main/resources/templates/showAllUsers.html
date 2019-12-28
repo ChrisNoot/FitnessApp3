@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<div>
+    <div th:each="user : ${allUsers}">
+        <span th:text="${user.toString()}"></span><br/>
+    </div>
+</div>
+<body>
+
+</body>
+</html>

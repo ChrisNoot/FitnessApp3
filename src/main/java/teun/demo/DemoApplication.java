@@ -5,7 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import teun.demo.domain.Group;
+import teun.demo.domain.User;
 import teun.demo.repository.GroupRepository;
+import teun.demo.repository.UserRepository;
 
 import java.util.Date;
 
@@ -17,7 +19,7 @@ public class DemoApplication {
     }
 
     @Bean
-    public CommandLineRunner dataLoader(GroupRepository groupRepo) {
+    public CommandLineRunner dataLoader(GroupRepository groupRepo, UserRepository userRepo) {
         return new CommandLineRunner() {
             @Override
             public void run(String... args) throws Exception {
@@ -30,7 +32,6 @@ public class DemoApplication {
                 groupRepo.save(new Group(6L,"19:00", new Date(), Group.Day.SATURDAY));
                 groupRepo.save(new Group(7L,"18:00", new Date(), Group.Day.SATURDAY));
                 groupRepo.save(new Group(8L,"21:00", new Date(), Group.Day.SUNDAY));
-
 
 
 

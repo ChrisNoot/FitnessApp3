@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import teun.demo.domain.Group;
 import teun.demo.domain.Group.Day;
+import teun.demo.domain.User;
 import teun.demo.repository.GroupRepository;
 import teun.demo.repository.UserRepository;
 
@@ -31,8 +34,8 @@ public class GroupController {
         this.groupRepository = groupRepo;
     }
 
-    @GetMapping("/all")
-    public String showAllGroups(Model model) {
+    @GetMapping("/show")
+    public String showGroups(Model model) {
 
         List<Group> groups = new ArrayList<>();
         this.groupRepository.findAll().forEach(groups::add);
@@ -50,8 +53,29 @@ public class GroupController {
         return "showGroups";
     }
 
+    @GetMapping("/all")
+    public String showAllGroups() {
+        return "showAllGroups";
+    }
+
     @GetMapping("/new")
     public String createGroup() {
         return "createGroup";
     }
+
+    @GetMapping("/{id}")
+    public List<User> showUsersByGroupId(@PathVariable("id") Long id) {
+        List<Group> usersInGroup = new ArrayList<>();
+        this.groupRepository.findById(id);
+        return null;
+    }
+
+    @ModelAttribute(name = "allGroups")
+    public List<Group> showGroups() {
+        List<Group> groups = new ArrayList<>();
+        this.groupRepository.findAll().forEach(e -> groups.add(e));
+        return groups;
+    }
+
+
 }

@@ -32,15 +32,16 @@ public class UserController {
         this.groupRepository = groupRepository;
     }
 
-    @GetMapping("/showall")
-    public String showAllUsers() {
-        return "showall";
-    }
 
     @GetMapping("/new")
     public String createNewUser() {
 
         return "userForm";
+    }
+
+    @GetMapping("/all")
+    public String showAllUsers() {
+        return "showAllUsers";
     }
 
     @PostMapping("/new")
@@ -64,6 +65,13 @@ public class UserController {
         List<Group> groups = new ArrayList<>();
         this.groupRepository.findAll().forEach(e -> groups.add(e));
         return groups;
+    }
+
+    @ModelAttribute(name = "allUsers")
+    public List<User> showUser() {
+        List<User> users = new ArrayList<>();
+        this.userRepository.findAll().forEach(users::add);
+        return users;
     }
 
 }

@@ -49,6 +49,11 @@ public class User {
 
     @ManyToMany(targetEntity = Group.class)
     @Size(min = 1, message = "Kies minimaal 1 groep.")
-    private List<Long> groups = new ArrayList<>();
+    private List<Group> groups = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return this.naam;
+    }
 
 }

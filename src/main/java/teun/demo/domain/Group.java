@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.DayOfWeek;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -42,5 +43,7 @@ public class Group {
         return day.toString().toLowerCase() +" "+ hourTime;
     }
 
+    @ManyToMany
+    private List<User> users = new ArrayList<>();
 
 }
