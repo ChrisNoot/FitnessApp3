@@ -1,0 +1,177 @@
+/* JAVASCRIPT LINKS */
+
+[data-info-content] {
+  display: none;
+}
+
+.active[data-info-content] {
+  display: block;
+}
+
+[data-input-content] {
+  display: none;
+}
+
+.active[data-input-content] {
+  display: block;
+}
+
+[data-tabel-content] {
+  display: none;
+}
+
+.active[data-tabel-content] {
+  display: block;
+}
+
+/* GENERAL STYLING TABS */
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  border-bottom: 2px solid $primary;
+}
+
+.tab {
+  cursor: pointer;
+  width: 100%;
+  font-size: 2rem;
+  text-align: center;
+  padding: .5rem;
+  background: $headerbackground;
+  transition: 0.3s;
+}
+
+.tab.active {
+  background: $primarygradient;
+  border: 2px solid $white;
+  transform: scale(1.1);
+}
+
+.tab:hover,
+.tab:focus {
+  background: $tabelhoverdark;
+}
+
+/* GRID */
+
+.container-info {
+  grid-column: 1/3;
+  grid-row: 2/3;
+  background: $headerbackground;
+  height: 100%;
+}
+
+.container-input {
+  grid-column: 4/6;
+  grid-row: 2/3;
+  background: $headerbackground;
+  height: 70%;
+}
+
+.container-tabel {
+  grid-column: 1/-1;
+  grid-row: 4/5;
+  background: $headerbackground;
+  height: 100%;
+}
+
+/* INFO */
+
+
+
+/* INPUT */
+
+
+.inputgrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    position: relative;
+}
+
+form {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    display: inline-block;
+    margin: .5em auto;
+}
+
+  input {
+    padding: .5em;
+    margin: 1em;
+    font-size: 2rem;
+}
+
+  .button-input {
+    grid-column: 2/4;
+    width: 80%;
+    height: 30%;
+    margin: auto;
+}
+
+/* TABEL */
+
+.tablewrapper {
+    width: 70%;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 2rem;
+}
+
+.tablehead {
+    color: $primary;
+    font-weight: bold;
+    padding: .5em 0;
+}
+
+.tableinput {
+    padding: .5em 0;
+    margin: 10px;
+}
+
+.tableinput:hover,
+.tableinput:focus {
+    background: $tabelhoverdark;
+}
+
+.klein {
+  width: 150px;
+  i {
+    font-size: 2rem;
+  }
+}
+
+.remove:hover,
+.remove:focus {
+  background: $remove;
+}
+
+.edit:hover,
+.edit:focus {
+  background: $edit;
+}
+
+/* INFO */
+
+.info-table {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px 0 0 10px;
+  .info-title {
+    font-size: 2rem;
+    color: $primary;
+  .ititle {
+    padding: 2.5rem 20px 2rem;
+    font-weight: bold;
+  }
+  }
+  .icontent {
+    font-size: 2rem;
+    padding: 2rem 20px;
+  }
+}

@@ -1,0 +1,29 @@
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 50px 0 auto;
+    grid-gap: 30px;
+    width: 60%;
+    height: 100%;
+}
+
+input {
+    padding: 1em 2em;
+    font-size: 1.5rem;
+    position: relative;
+}
+
+input:hover,
+input:focus {
+    transform: scale(1.05);
+    transition: 0.5s;
+    border: 1px solid $primary1;
+}
+
+.button-form {
+    grid-column: 1/-1;
+    grid-row: 5/6;
+    font-size: 1.5rem;
+    padding: .5em 2em;
+    border: 0px;
+}

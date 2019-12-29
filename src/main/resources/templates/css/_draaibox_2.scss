@@ -1,0 +1,46 @@
+.draaibox {
+    background: $tabelhover;
+    width: 225px;
+    height: 350px;
+    border-radius: 10px;
+    text-align: center;
+    margin: auto;
+    transition: transform;
+    transform: rotate(135deg);
+    border: 1px solid $primary;
+}
+
+.draaibox:hover,
+.draaibox:focus {
+    transform: scale(1.2);
+    transform: rotate(180deg);
+    transition: .5s;
+    color: $primary;
+}
+
+.draaibox-naam {
+    font-weight: bold;
+    margin: 1em;
+    transform: rotate(-135deg);
+    font-weight: 300;
+    color: #fff;
+}
+
+.draaibox:hover .draaibox-naam {
+    transform: rotate(-180deg);
+    transition: .5s;
+}
+
+.draaibox-image {
+    border-radius: 50%;
+    width: 100%;
+    padding: 1em;
+    transform: rotate(-135deg);
+}
+
+.draaibox:hover .draaibox-image {
+    transform: rotate(-180deg);
+    transition: .5s;
+}
+
+

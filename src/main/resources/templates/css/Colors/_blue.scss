@@ -1,0 +1,18 @@
+$primary: rgb(41, 128, 185);
+$primary1: rgb(3, 89, 146);
+$primary2: rgb(2, 59, 97);
+$secundary: rgba(41, 128, 185, .4);
+$secundary1: rgba(3, 89, 146, .4);
+$tertiary: rgba(41, 128, 185, .7);
+$tertiary1: rgba(3, 89, 146, .7);
+$white: rgb(255, 255, 255);
+$headerbackground: rgba(0,0,0,0.6);
+$backgroundcolor: rgb(34, 34, 34);
+$primarygradient: linear-gradient(to right, $primary, $primary1); 
+$tabelhover: linear-gradient(to right, $secundary, $secundary1);
+$tabelhoverdark: linear-gradient(to right, $tertiary, $tertiary1);
+
+/* ICONS */
+
+$remove: linear-gradient(to right, rgb(189, 0, 0), rgb(114, 0, 0)); 
+$edit: linear-gradient(to right, rgb(58, 93, 1), rgb(19, 68, 0)); 

@@ -1,0 +1,37 @@
+/* BASICS */
+
+@import "./basics";
+
+/* COLORS */
+
+@import "./colors";
+
+/* BODY */
+
+@import "./body";
+body {
+@include body (url("../img/background4.jpg"));
+}
+
+/* WRAPPERS */
+
+@import "./wrappers";
+
+.wrapper-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 50px 1fr 1fr;
+    grid-template-rows: 30px 1fr 30px 1.2fr 30px;
+    overflow: visible;
+}
+
+/* BUTTON */
+
+@import "./button";
+
+/* INVOER TABEL */
+
+@import "./tabel_a";
+
+/* MEDIA QUERIES */
+
+@import "./media_queries";

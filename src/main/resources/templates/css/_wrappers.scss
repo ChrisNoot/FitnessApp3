@@ -1,0 +1,38 @@
+.wrapper-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 10%;
+    border-bottom: 2px solid $primary;
+    box-shadow: 0 10px 80px rgba(0,0,0,0.7);
+    position: relative;
+    text-align: center;
+    background: $headerbackground;
+    height: 10vh;
+    min-height: 80px;
+    
+    .header-title {
+        letter-spacing: 2px;
+        font-size: 3rem;
+        text-shadow: 5px 5px 5px rgba(0,0,0,0.7);
+    }
+    
+    .header-logo{
+        width: 270px;
+        text-align: left;
+    }
+    
+    .header-button {
+        width: 270px;
+    }
+}
+
+.wrapper-main {
+    box-sizing: border-box;
+    overflow: hidden;
+    width: 90%;
+    margin: 0 auto;
+    padding: 40px 10px;
+    height: 90vh;
+}
+

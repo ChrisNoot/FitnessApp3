@@ -1,0 +1,47 @@
+/* BASICS */
+
+@import "./basics";
+
+/* COLORS */
+
+@import "./colors";
+
+/* BODY */
+
+@import "./body";
+body {
+@include body (url("../img/background2.jpg"));
+}
+
+/* WRAPPERS */
+
+@import "./wrappers";
+
+.wrapper-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+/* BUTTON */
+
+@import "./button";
+
+/* DRAAIBOX */
+
+@import "./draaibox";
+
+/* MEDIA QUERIES */
+
+@import "./media_queries";
+
+/* Branding */
+
+.branding {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: $tertiary1;
+    padding: 0 20px 20px 0;
+    font-weight: bold;
+    letter-spacing: 2px;
+}

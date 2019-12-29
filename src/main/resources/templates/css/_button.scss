@@ -1,0 +1,23 @@
+.button {
+    font-size: 1rem;
+    font-weight: bold;
+    display: block;
+    position: relative;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 1px;
+    background: linear-gradient(to right, $primary, $primary1);
+    padding: 1em 2em;
+    border-radius: 3px;
+    transition: transform 0.5s;
+    border: 1px solid $primary;
+    overflow: visible;
+}
+
+.button:hover,
+.button:focus {
+    background: linear-gradient(to right, $primary, $primary1, $primary2);
+    transition: 0.5s;
+    transform: scale(1.1);
+    box-shadow: 0px 0px 10px rgba(0,0,0,.6);
+}

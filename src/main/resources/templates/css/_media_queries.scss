@@ -1,0 +1,14 @@
+@media (max-width: 1000px) {
+    .wrapper-main {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .header-title {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .wrapper-main {
+        grid-template-columns: 1fr 1fr;
+    }
+}
