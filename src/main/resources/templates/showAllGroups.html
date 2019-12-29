@@ -3,6 +3,7 @@
 <div>
     <div th:each="group : ${allGroups}">
         <span th:text="${group.toString()}"></span><br/>
+        <a th:href="@{'/groups/' + ${group.id}}">view</a>
     </div>
 </div>
 <body>

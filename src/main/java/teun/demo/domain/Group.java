@@ -6,9 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.DayOfWeek;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Data
 @NoArgsConstructor(access =  AccessLevel.PUBLIC,force = true)
@@ -43,7 +41,7 @@ public class Group {
         return day.toString().toLowerCase() +" "+ hourTime;
     }
 
-    @ManyToMany
-    private List<User> users = new ArrayList<>();
+    @ManyToMany(mappedBy = "groups")
+    private Set<User> users = new HashSet<>();
 
 }
