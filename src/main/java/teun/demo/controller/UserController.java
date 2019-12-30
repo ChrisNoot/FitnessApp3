@@ -51,7 +51,7 @@ public class UserController {
         }
         log.info(user.getGroups().toString());
         userRepository.save(user);
-        return "userCreated";
+        return "home";
     }
 
     @ModelAttribute(name = "user")
