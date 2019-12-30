@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 10%;
+    padding: 1rem 5%;
     border-bottom: 2px solid $primary;
     box-shadow: 0 10px 80px rgba(0,0,0,0.7);
     position: relative;
@@ -24,6 +24,7 @@
     
     .header-button {
         width: 270px;
+        margin-top: 18px;
     }
 }
 

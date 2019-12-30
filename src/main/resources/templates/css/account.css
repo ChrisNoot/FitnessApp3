@@ -40,8 +40,8 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 1rem 10%;
-  border-bottom: 2px solid #f39c12;
+  padding: 1rem 5%;
+  border-bottom: 2px solid #2980b9;
   -webkit-box-shadow: 0 10px 80px rgba(0, 0, 0, 0.7);
           box-shadow: 0 10px 80px rgba(0, 0, 0, 0.7);
   position: relative;
@@ -64,6 +64,7 @@ body {
 
 .wrapper-header .header-button {
   width: 270px;
+  margin-top: 18px;
 }
 
 .wrapper-main {
@@ -80,33 +81,38 @@ body {
 .button {
   font-size: 1rem;
   font-weight: bold;
-  display: block;
+  display: inline-block;
   position: relative;
   text-transform: uppercase;
   color: white;
   letter-spacing: 1px;
-  background: -webkit-gradient(linear, left top, right top, from(#f39c12), to(#e66422));
-  background: linear-gradient(to right, #f39c12, #e66422);
+  background: -webkit-gradient(linear, left top, right top, from(#2980b9), to(#035992));
+  background: linear-gradient(to right, #2980b9, #035992);
   padding: 1em 2em;
   border-radius: 3px;
   -webkit-transition: -webkit-transform 0.5s;
   transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
   transition: transform 0.5s, -webkit-transform 0.5s;
-  border: 1px solid #f39c12;
+  border: 1px solid #2980b9;
   overflow: visible;
+  margin: 10px 20px 0 20px;
 }
 
 .button:hover,
 .button:focus {
-  background: -webkit-gradient(linear, left top, right top, from(#f39c12), color-stop(#e66422), to(#d35400));
-  background: linear-gradient(to right, #f39c12, #e66422, #d35400);
+  background: -webkit-gradient(linear, left top, right top, from(#2980b9), color-stop(#035992), to(#023b61));
+  background: linear-gradient(to right, #2980b9, #035992, #023b61);
   -webkit-transition: 0.5s;
   transition: 0.5s;
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
   -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
           box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+}
+
+.btn-header {
+  margin-top: 10px;
 }
 
 /* FORM */
@@ -133,7 +139,7 @@ input:focus {
           transform: scale(1.05);
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  border: 1px solid #e66422;
+  border: 1px solid #035992;
 }
 
 .button-form {
