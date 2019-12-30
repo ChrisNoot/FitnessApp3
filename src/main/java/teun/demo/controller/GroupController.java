@@ -63,10 +63,10 @@ public class GroupController {
     }
 
     @GetMapping("/{id}")
-    public List<User> showUsersByGroupId(@PathVariable("id") Long id) {
-        List<Group> usersInGroup = new ArrayList<>();
+    public String showUsersByGroupId(@PathVariable("id") Long id) {
+        List<User> usersInGroup = new ArrayList<>();
         this.groupRepository.findById(id);
-        return null;
+        return "showGroupById";
     }
 
     @ModelAttribute(name = "allGroups")

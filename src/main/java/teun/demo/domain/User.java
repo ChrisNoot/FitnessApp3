@@ -6,9 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @NoArgsConstructor(access =  AccessLevel.PUBLIC,force = true)
@@ -47,9 +45,9 @@ public class User {
         createdAt = new Date();
     }
 
-    @ManyToMany(targetEntity = Group.class)
+    @ManyToMany
     @Size(min = 1, message = "Kies minimaal 1 groep.")
-    private List<Group> groups = new ArrayList<>();
+    private Set<Group> groups = new HashSet<>();
 
     @Override
     public String toString() {
