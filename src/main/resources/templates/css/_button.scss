@@ -6,7 +6,7 @@
     text-transform: uppercase;
     color: white;
     letter-spacing: 1px;
-    background: linear-gradient(to right, red, $primary1);
+    background: linear-gradient(to right, $primary, $primary1);
     padding: 1em 2em;
     border-radius: 3px;
     transition: transform 0.5s;
