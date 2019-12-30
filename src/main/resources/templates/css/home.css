@@ -122,6 +122,15 @@ body {
   margin-top: 10px;
 }
 
+.gridspan {
+  grid-column: 1/-1;
+  -ms-grid-row: 5;
+  -ms-grid-row-span: 1;
+  grid-row: 5/6;
+  width: 100%;
+  margin: 0;
+}
+
 /* DRAAIBOX */
 .draaibox {
   background: -webkit-gradient(linear, left top, right top, from(rgba(41, 128, 185, 0.4)), to(rgba(3, 89, 146, 0.4)));

@@ -26,3 +26,10 @@
 .btn-header {
     margin-top: 10px;
 }
+
+.gridspan {
+    grid-column: 1/-1;
+    grid-row: 5/6;
+    width: 100%;
+    margin: 0;
+}

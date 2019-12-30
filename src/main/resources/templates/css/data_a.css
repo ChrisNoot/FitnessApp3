@@ -125,6 +125,15 @@ body {
   margin-top: 10px;
 }
 
+.gridspan {
+  grid-column: 1/-1;
+  -ms-grid-row: 5;
+  -ms-grid-row-span: 1;
+  grid-row: 5/6;
+  width: 100%;
+  margin: 0;
+}
+
 /* INVOER TABEL */
 /* JAVASCRIPT LINKS */
 [data-info-content] {

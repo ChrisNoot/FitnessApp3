@@ -28,3 +28,7 @@ body {
 /* MEDIA QUERIES */
 
 @import "./media_queries";
+
+.validationError {
+    display: none;
+}

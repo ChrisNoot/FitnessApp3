@@ -5,77 +5,65 @@
 <head>
     <title>New User form</title>
     <link rel="stylesheet" th:href="@{/styles.css}"/>
-    <link href="css/home.css" rel="stylesheet">;
+    <link href="css/account.css" rel="stylesheet">
 </head>
 <body>
+      <header class='wrapper-header'>
+            <a href="home.html" class="header-logo"><img src="img/Logo-Wilgen-Training.png" alt="brand" class="logo"></a>
+            <h1 class= "header-title">MAAK NIEUW ACCOUNT AAN</h1>
+            <nav class="navigation">
+                <a th:href="@{/}" id="newUser" class="button">TERUG</a>
+            </nav>
+      </header>
 
-<form method="POST" th:action="@{/user/new}" th:object="${user}">
-    <h1>Fill in your details</h1>
-    <a th:href="@{/user/new}" id="another">Create another user</a><br/>
-
-    <h2>Please enter data your here: </h2>
-    <label for="naam"> Naam: </label>
-    <input type="text" th:field="*{naam}"/>
+      <main class="wrapper-main">
+      <form method="POST" th:action="@{/user/new}" th:object="${user}">
+   
+   <input type="text" th:field="*{naam}" required placeholder="Naam"/>
     <span class="validationError"
           th:if="${#fields.hasErrors('naam')}"
           th:errors="*{naam}">Naam error</span>
 
-    <br/>
-
-    <label for="gebruikersnaam"> Gebruikersnaam: </label>
-    <input type="text" th:field="*{gebruikersnaam}"/>
+    <input type="text" th:field="*{gebruikersnaam}" required placeholder="Gebruikersnaam"/>
     <span class="validationError"
           th:if="${#fields.hasErrors('gebruikersnaam')}"
           th:errors="*{gebruikersnaam}">gebruikersnaam error</span>
-    <br/>
-
-    <label for="geboortedatum"> Geboortedatum: </label>
-    <input type="text" th:field="*{geboortedatum}"/>
+    
+    <input type="text" th:field="*{geboortedatum}" required placeholder="Geboortedatum"/>
     <span class="validationError"
           th:if="${#fields.hasErrors('geboortedatum')}"
           th:errors="*{geboortedatum}">Geboortedatum error</span>
 
-    <br/>
-
-    <label for="email"> E-mail: </label>
-    <input type="text" th:field="*{email}"/>
-    <span class="validationError"
+      <input type="text" th:field="*{email}" required placeholder="Email"/>
+      <span class="validationError"
           th:if="${#fields.hasErrors('email')}"
           th:errors="*{email}">Email error</span>
 
-    <br/>
-
-    <label for="lengte"> Length: </label>
-    <input type="text" th:field="*{lengte}"/>
-    <span class="validationError"
+      <input type="text" th:field="*{lengte}" required placeholder="Lengte"/>
+      <span class="validationError"
           th:if="${#fields.hasErrors('lengte')}"
           th:errors="*{lengte}">lengte error</span>
-    <br/>
-
-    <label for="gewicht"> Gewicht: </label>
-    <input type="text" th:field="*{gewicht}"/>
+  
+    <input type="text" th:field="*{gewicht}" required placeholder="Gewicht"/>
     <span class="validationError"
           th:if="${#fields.hasErrors('gewicht')}"
           th:errors="*{gewicht}">Gewicht error</span>
-    <br/>
-
-    <label for="telefoonnummer"> Telefoonnummer: </label>
-    <input type="text" th:field="*{telefoonnummer}"/>
+    
+    <input type="text" th:field="*{telefoonnummer}" required placeholder="Telefoonnummer"/>
     <span class="validationError"
           th:if="${#fields.hasErrors('telefoonnummer')}"
           th:errors="*{telefoonnummer}">Telefoonnummer error</span>
-    <br/>
-
-
-    <div>
-        <div th:each="group : ${allGroups}">
+        <div>
+        
+         <div th:each="group : ${allGroups}">
             <input name="groups" type="checkbox" th:value="${group.id}"/>
             <span th:text="${group.toString()}"></span><br/>
         </div>
     </div>
-<div class="hallo"><h1>Hallo github</h1></div>
-    <input type="submit" value="Create user" class="button"/>
 
+    <input type="submit" value="ACCOUNT AANMAKEN" class="button gridspan"/>
+
+</main>
 </form>
 </body>
 </html>

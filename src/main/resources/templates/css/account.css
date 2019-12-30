@@ -115,6 +115,15 @@ body {
   margin-top: 10px;
 }
 
+.gridspan {
+  grid-column: 1/-1;
+  -ms-grid-row: 5;
+  -ms-grid-row-span: 1;
+  grid-row: 5/6;
+  width: 100%;
+  margin: 0;
+}
+
 /* FORM */
 form {
   display: -ms-grid;
@@ -168,5 +177,9 @@ input:focus {
     -ms-grid-columns: 1fr 1fr;
         grid-template-columns: 1fr 1fr;
   }
+}
+
+.validationError {
+  display: none;
 }
 /*# sourceMappingURL=account.css.map */
