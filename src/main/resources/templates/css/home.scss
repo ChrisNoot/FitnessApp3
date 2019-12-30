@@ -10,7 +10,7 @@
 
 @import "./body";
 body {
-@include body (url("../img/background2.jpg"));
+@include body (url("../img/background3.jpg"));
 }
 
 /* WRAPPERS */
@@ -33,15 +33,3 @@ body {
 /* MEDIA QUERIES */
 
 @import "./media_queries";
-
-/* Branding */
-
-.branding {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    color: $tertiary1;
-    padding: 0 20px 20px 0;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
