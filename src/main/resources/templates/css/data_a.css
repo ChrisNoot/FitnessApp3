@@ -41,7 +41,7 @@ body {
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 1rem 5%;
-  border-bottom: 2px solid #2980b9;
+  border-bottom: 2px solid #f39c12;
   -webkit-box-shadow: 0 10px 80px rgba(0, 0, 0, 0.7);
           box-shadow: 0 10px 80px rgba(0, 0, 0, 0.7);
   position: relative;
@@ -96,15 +96,15 @@ body {
   text-transform: uppercase;
   color: white;
   letter-spacing: 1px;
-  background: -webkit-gradient(linear, left top, right top, from(#2980b9), to(#035992));
-  background: linear-gradient(to right, #2980b9, #035992);
+  background: -webkit-gradient(linear, left top, right top, from(#f39c12), to(#e66422));
+  background: linear-gradient(to right, #f39c12, #e66422);
   padding: 1em 2em;
   border-radius: 3px;
   -webkit-transition: -webkit-transform 0.5s;
   transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
   transition: transform 0.5s, -webkit-transform 0.5s;
-  border: 1px solid #2980b9;
+  border: 1px solid #f39c12;
   overflow: visible;
   margin: 0 20px 0;
   cursor: pointer;
@@ -112,8 +112,8 @@ body {
 
 .button:hover,
 .button:focus {
-  background: -webkit-gradient(linear, left top, right top, from(#2980b9), color-stop(#035992), to(#023b61));
-  background: linear-gradient(to right, #2980b9, #035992, #023b61);
+  background: -webkit-gradient(linear, left top, right top, from(#f39c12), color-stop(#e66422), to(#d35400));
+  background: linear-gradient(to right, #f39c12, #e66422, #d35400);
   -webkit-transition: 0.5s;
   transition: 0.5s;
   -webkit-transform: scale(1.1);
@@ -167,7 +167,7 @@ body {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  border-bottom: 2px solid #2980b9;
+  border-bottom: 2px solid #f39c12;
 }
 
 .tab {
@@ -182,8 +182,8 @@ body {
 }
 
 .tab.active {
-  background: -webkit-gradient(linear, left top, right top, from(#2980b9), to(#035992));
-  background: linear-gradient(to right, #2980b9, #035992);
+  background: -webkit-gradient(linear, left top, right top, from(#f39c12), to(#e66422));
+  background: linear-gradient(to right, #f39c12, #e66422);
   border: 2px solid white;
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
@@ -191,8 +191,8 @@ body {
 
 .tab:hover,
 .tab:focus {
-  background: -webkit-gradient(linear, left top, right top, from(rgba(41, 128, 185, 0.7)), to(rgba(3, 89, 146, 0.7)));
-  background: linear-gradient(to right, rgba(41, 128, 185, 0.7), rgba(3, 89, 146, 0.7));
+  background: -webkit-gradient(linear, left top, right top, from(rgba(243, 156, 18, 0.7)), to(rgba(230, 100, 34, 0.7)));
+  background: linear-gradient(to right, rgba(243, 156, 18, 0.7), rgba(230, 100, 34, 0.7));
 }
 
 /* GRID */
@@ -273,7 +273,7 @@ input {
 }
 
 .tablehead {
-  color: #2980b9;
+  color: #f39c12;
   font-weight: bold;
   padding: .5em 0;
 }
@@ -285,8 +285,8 @@ input {
 
 .tableinput:hover,
 .tableinput:focus {
-  background: -webkit-gradient(linear, left top, right top, from(rgba(41, 128, 185, 0.7)), to(rgba(3, 89, 146, 0.7)));
-  background: linear-gradient(to right, rgba(41, 128, 185, 0.7), rgba(3, 89, 146, 0.7));
+  background: -webkit-gradient(linear, left top, right top, from(rgba(243, 156, 18, 0.7)), to(rgba(230, 100, 34, 0.7)));
+  background: linear-gradient(to right, rgba(243, 156, 18, 0.7), rgba(230, 100, 34, 0.7));
 }
 
 .klein {
@@ -319,7 +319,7 @@ input {
 
 .info-table .info-title {
   font-size: 2rem;
-  color: #2980b9;
+  color: #f39c12;
 }
 
 .info-table .info-title .ititle {
