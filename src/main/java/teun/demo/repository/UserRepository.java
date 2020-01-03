@@ -11,11 +11,5 @@ import java.util.List;
 
 public interface UserRepository extends CrudRepository<User,Long> {
 
-    public User getUserByIdWithTypedQuery(Long id) {
-        TypedQuery<User> typedQuery
-                = getEntityManager().createQuery("SELECT u FROM UserEntity u WHERE u.id=:id", User.class);
-        typedQuery.setParameter("id", id);
-        return typedQuery.getSingleResult();
-    }
 
 }

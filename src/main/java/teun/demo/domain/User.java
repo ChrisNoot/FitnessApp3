@@ -54,4 +54,26 @@ public class User {
         return this.naam;
     }
 
+    public User(Long id,
+                Date date,
+                String naam,
+                String gebruikersnaam,
+                String gewicht,
+                String lengte,
+                String geboortedatum,
+                String email,
+                String telefoonnummer,
+                Set<Group> groups) {
+        this.id = id;
+        this.createdAt = date;
+        this.naam = naam;
+        this.gebruikersnaam = gebruikersnaam;
+        this.gewicht = gewicht;
+        this.lengte = lengte;
+        this.geboortedatum = geboortedatum;
+        this.email = email;
+        this.telefoonnummer = telefoonnummer;
+        this.groups = groups;
+    }
+
 }

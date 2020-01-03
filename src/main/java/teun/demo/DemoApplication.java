@@ -10,6 +10,8 @@ import teun.demo.repository.GroupRepository;
 import teun.demo.repository.UserRepository;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -32,12 +34,20 @@ public class DemoApplication {
                 groupRepo.save(new Group(6L,"19:00", new Date(), Group.Day.SATURDAY));
                 groupRepo.save(new Group(7L,"18:00", new Date(), Group.Day.SATURDAY));
                 groupRepo.save(new Group(8L,"21:00", new Date(), Group.Day.SUNDAY));
-
-
-
-
-
-
+                Set<Group> testGroups = new HashSet<Group>();
+                testGroups.add(groupRepo.findById(1L).get());
+                testGroups.add(groupRepo.findById(5L).get());
+                testGroups.add(groupRepo.findById(6L).get());
+                userRepo.save(new User(1L,
+                                new Date(),
+                        "teun",
+                        "teunajax",
+                        "70",
+                        "180",
+                        "15-05-1992",
+                        "chris.nooteboom@gmail.com",
+                        "0618571699",testGroups
+                        ));
             }
         };
     }
