@@ -25,9 +25,10 @@ public class DemoApplication {
         return new CommandLineRunner() {
             @Override
             public void run(String... args) throws Exception {
-
-                groupRepo.save(new Group(1L,"19:00", new Date(), Group.Day.TUESDAY));
-                groupRepo.save(new Group(2L,"20:00", new Date(), Group.Day.TUESDAY));
+                Group group1 = new Group(1L,"19:00", new Date(), Group.Day.TUESDAY);
+                Group group2 = new Group(2L,"20:00", new Date(), Group.Day.TUESDAY);
+                groupRepo.save(group1);
+                groupRepo.save(group2);
                 groupRepo.save(new Group(3L,"21:00", new Date(), Group.Day.TUESDAY));
                 groupRepo.save(new Group(4L,"18:00", new Date(), Group.Day.WEDNESDAY));
                 groupRepo.save(new Group(5L,"19:00", new Date(), Group.Day.WEDNESDAY));
@@ -35,19 +36,11 @@ public class DemoApplication {
                 groupRepo.save(new Group(7L,"18:00", new Date(), Group.Day.SATURDAY));
                 groupRepo.save(new Group(8L,"21:00", new Date(), Group.Day.SUNDAY));
                 Set<Group> testGroups = new HashSet<Group>();
-                testGroups.add(groupRepo.findById(1L).get());
-                testGroups.add(groupRepo.findById(5L).get());
-                testGroups.add(groupRepo.findById(6L).get());
-                userRepo.save(new User(1L,
-                                new Date(),
-                        "teun",
-                        "teunajax",
-                        "70",
-                        "180",
-                        "15-05-1992",
-                        "chris.nooteboom@gmail.com",
-                        "0618571699",testGroups
-                        ));
+                testGroups.add(group1);
+                testGroups.add(group2);
+                userRepo.save(new User(1L, new Date(), "teun", "teunajax", "70",
+                        "180", "15-05-1992", "chris.nooteboom@gmail.com", "0618571699", testGroups)
+                );
             }
         };
     }

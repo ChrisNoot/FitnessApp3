@@ -15,6 +15,7 @@ import teun.demo.repository.UserRepository;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Slf4j
@@ -52,6 +53,13 @@ public class UserController {
         log.info(user.getGroups().toString());
         userRepository.save(user);
         return "home";
+    }
+
+    @GetMapping("/test")
+    public String showGroupByUserId() {
+        Collection<Long> groupIds = groupRepository.findAllGroupsForUserIdNative();
+        log.info(groupIds.toString());
+        return "userForm";
     }
 
     @ModelAttribute(name = "user")
