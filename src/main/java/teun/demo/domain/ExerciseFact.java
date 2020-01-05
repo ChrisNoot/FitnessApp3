@@ -6,17 +6,22 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor(access =  AccessLevel.PUBLIC,force = true)
 @Entity
-public class Exercise {
+public class ExerciseFact {
 
     @Id
-    private String id;
+    private Long id;
 
-    private String name;
-    private String score;
+    private Date date;
+
+    @PrePersist
+    public void createDate() {
+        this.date = new Date();
+    }
 }
-

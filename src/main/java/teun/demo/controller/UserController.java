@@ -57,7 +57,7 @@ public class UserController {
 
     @GetMapping("/test")
     public String showGroupByUserId() {
-        Collection<Long> groupIds = groupRepository.findAllGroupsForUserIdNative();
+        Collection<Long> groupIds = groupRepository.findAllGroupsForUserIdNative(1L);
         log.info(groupIds.toString());
         return "userForm";
     }
