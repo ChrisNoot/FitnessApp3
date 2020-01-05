@@ -47,7 +47,7 @@ public class User {
 
     @ManyToMany
     @Size(min = 1, message = "Kies minimaal 1 groep.")
-    private Set<Group> groups = new HashSet<>();
+    private List<Group> groups = new ArrayList<>();
 
     @Override
     public String toString() {
@@ -63,7 +63,7 @@ public class User {
                 String geboortedatum,
                 String email,
                 String telefoonnummer,
-                Set<Group> groups) {
+                List<Group> groups) {
         this.id = id;
         this.createdAt = date;
         this.naam = naam;

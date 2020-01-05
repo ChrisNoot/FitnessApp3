@@ -12,7 +12,12 @@ import java.util.List;
 public interface GroupRepository extends CrudRepository<Group,Long> {
 
     @Query(
-            value = "SELECT groups_id FROM USER_TABLE ut left join user_table_groups utg on ut.id = utg.users_id",
+            value = "SELECT groups_id FROM USER_TABLE_GROUPS where users_id = :userId",
             nativeQuery = true)
-    Collection<Long> findAllGroupsForUserIdNative();
+    Collection<Long> findAllGroupsForUserIdNative(@Param("userId") Long userId);
+
+    @Query(
+            value = "SELECT users_id FROM USER_TABLE_GROUPS where groups_id = :groupId",
+            nativeQuery = true)
+    Collection<Long> findAllUsersForGroupIdNative(@Param("groupId") Long groupId);
 }

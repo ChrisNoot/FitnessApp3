@@ -15,10 +15,7 @@ import teun.demo.domain.User;
 import teun.demo.repository.GroupRepository;
 import teun.demo.repository.UserRepository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -27,10 +24,12 @@ import java.util.stream.Collectors;
 public class GroupController {
 
     private GroupRepository groupRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    public GroupController(GroupRepository groupRepo) {
+    public GroupController(GroupRepository groupRepo, UserRepository userRepo) {
         this.groupRepository = groupRepo;
+        this.userRepository = userRepo;
     }
 
     @GetMapping("/show")
@@ -63,11 +62,13 @@ public class GroupController {
     }
 
     @GetMapping("/{id}")
-    public String showUsersByGroupId(@PathVariable("id") Long id) {
-        //List<User> usersInGroup = this.groupRepository.findUsersByGroup(id);
-        //log.info(usersInGroup.toString());
-
-        return "showGroupById";
+    public String showUsersByGroupId(@PathVariable("id") Long id,Model model) {
+        List<User> users = new ArrayList<>();
+        Collection<Long> userIds = groupRepository.findAllUsersForGroupIdNative(id);
+        log.info(userIds.toString());
+        userRepository.findAllById(userIds).forEach(x -> users.add(x));
+        model.addAttribute("users",users);
+        return "showUsersByGroupId";
     }
 
     @ModelAttribute(name = "allGroups")

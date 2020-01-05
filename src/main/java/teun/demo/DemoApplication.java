@@ -9,9 +9,7 @@ import teun.demo.domain.User;
 import teun.demo.repository.GroupRepository;
 import teun.demo.repository.UserRepository;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -35,7 +33,7 @@ public class DemoApplication {
                 groupRepo.save(new Group(6L,"19:00", new Date(), Group.Day.SATURDAY));
                 groupRepo.save(new Group(7L,"18:00", new Date(), Group.Day.SATURDAY));
                 groupRepo.save(new Group(8L,"21:00", new Date(), Group.Day.SUNDAY));
-                Set<Group> testGroups = new HashSet<Group>();
+                List<Group> testGroups = new ArrayList<>();
                 testGroups.add(group1);
                 testGroups.add(group2);
                 userRepo.save(new User(1L, new Date(), "teun", "teunajax", "70",
