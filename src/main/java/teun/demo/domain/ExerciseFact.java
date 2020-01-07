@@ -20,6 +20,8 @@ public class ExerciseFact {
 
     private Date date;
 
+    private Exercise exercise;
+
     @PrePersist
     public void createDate() {
         this.date = new Date();

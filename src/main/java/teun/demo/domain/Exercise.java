@@ -21,8 +21,8 @@ public class Exercise {
     private String score;
 
     private Category category;
-    
-    private Set<Category> ListOfCategories;
+
+    private Set<Category> listOfCategories;
 
 
 }
