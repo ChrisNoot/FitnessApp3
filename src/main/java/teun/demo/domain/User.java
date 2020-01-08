@@ -49,6 +49,9 @@ public class User {
     @Size(min = 1, message = "Kies minimaal 1 groep.")
     private List<Group> groups = new ArrayList<>();
 
+    @OneToMany
+    private Set<ExerciseFact> exerciseFacts = new HashSet<>();
+
     @Override
     public String toString() {
         return this.naam;

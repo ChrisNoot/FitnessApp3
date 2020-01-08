@@ -4,10 +4,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Data
@@ -16,10 +13,15 @@ import java.util.Date;
 public class ExerciseFact {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
     private Date date;
 
+    @ManyToOne
+    private User user;
+
+    @ManyToOne
     private Exercise exercise;
 
     @PrePersist
