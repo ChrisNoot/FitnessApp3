@@ -93,9 +93,6 @@ public class DemoApplication {
                 exerciseRepo.save(new Exercise(47L,"Cindy", Category.WORKOUT, SubCategory.CINDY, MeasuringUnit.REPEATS));
                 exerciseRepo.save(new Exercise(48L,"100/200/300", Category.WORKOUT, SubCategory.MURPH, MeasuringUnit.TIME));
                 exerciseRepo.save(new Exercise(49L,"5/10/15", Category.WORKOUT, SubCategory.MURPH, MeasuringUnit.TIME));
-
-
-
             }
         };
     }
