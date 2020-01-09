@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import teun.demo.domain.Group;
 import teun.demo.domain.User;
+import teun.demo.repository.ExerciseRepository;
 import teun.demo.repository.GroupRepository;
 import teun.demo.repository.UserRepository;
 
@@ -19,7 +20,7 @@ public class DemoApplication {
     }
 
     @Bean
-    public CommandLineRunner dataLoader(GroupRepository groupRepo, UserRepository userRepo) {
+    public CommandLineRunner dataLoader(GroupRepository groupRepo, UserRepository userRepo, ExerciseRepository exerciseRepo) {
         return new CommandLineRunner() {
             @Override
             public void run(String... args) throws Exception {
@@ -39,6 +40,7 @@ public class DemoApplication {
                 userRepo.save(new User(1L, new Date(), "teun", "teunajax", "70",
                         "180", "15-05-1992", "chris.nooteboom@gmail.com", "0618571699", testGroups)
                 );
+                exerciseRepo.save(1L,)
             }
         };
     }

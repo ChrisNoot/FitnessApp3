@@ -14,10 +14,13 @@ import java.util.Set;
 public class Exercise {
 
     @Id
-    private String id;
+    private Long id;
 
     private String name;
     private String score;
+    private Category category;
+    private SubCategory subCategory;
+    private MeasuringUnit measuringUnit;
 
     @OneToMany
     private Set<ExerciseFact> ExerciseFacts= new HashSet();
@@ -27,7 +30,22 @@ public class Exercise {
     }
 
     public enum SubCategory {
-        SUB1,SUB2,SUB3,SUB4
+        SQUAT,DEADLIFT,ROWSTRENGTH,PUSH,CARRY,LUNGE,OLYMPICLIFT,
+        JUMPINGROPE,PISTOLS,BOXJUMP,TGU,MUSCLEUP,TOESTOBAR,HANDSTAND,
+        ROWCARDIO,BURPEE,
+        CINDY,MURPH
+    }
+
+    public Exercise(Long id, String name, String score, Category category, SubCategory subCategory) {
+        this.id = id;
+        this.name = name;
+        this.score = score;
+        this.category = category;
+        this.subCategory = subCategory;
+    }
+
+    public enum MeasuringUnit {
+        KG,REPEATS,METER,TIME,CAL
     }
 
 }
