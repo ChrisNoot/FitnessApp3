@@ -4,19 +4,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import teun.demo.domain.Group;
 import teun.demo.domain.User;
+import teun.demo.repository.ExerciseRepository;
 import teun.demo.repository.GroupRepository;
 import teun.demo.repository.UserRepository;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 @Controller
@@ -26,11 +22,13 @@ public class UserController {
 
     private UserRepository userRepository;
     private GroupRepository groupRepository;
+    private ExerciseRepository exerciseRepository;
 
     @Autowired
-    public UserController(UserRepository userRepository, GroupRepository groupRepository) {
+    public UserController(UserRepository userRepository, GroupRepository groupRepository, ExerciseRepository exerciseRepo) {
         this.userRepository = userRepository;
         this.groupRepository = groupRepository;
+        this.exerciseRepository = exerciseRepo;
     }
 
 
@@ -62,6 +60,13 @@ public class UserController {
         return "userForm";
     }
 
+    @GetMapping("/{id}")
+    public String showUserById(@PathVariable long id) {
+
+        log.info( Long.toString(id));
+        return "showUserById";
+    }
+
     @ModelAttribute(name = "user")
     public User newUser() {
         return new User();
@@ -80,6 +85,18 @@ public class UserController {
         List<User> users = new ArrayList<>();
         this.userRepository.findAll().forEach(users::add);
         return users;
+    }
+
+    @ModelAttribute(name = "categories")
+    public Set<String> showCategories() {
+        Set<String> categories = new HashSet<>();
+        this.exerciseRepository.findAll().forEach(x->categories.add(x.getCategory().toString()));
+        return categories;
+    }
+
+    @ModelAttribute(name = "subCategories")
+    public List<String> showSubCategories() {
+        return null;
     }
 
 }

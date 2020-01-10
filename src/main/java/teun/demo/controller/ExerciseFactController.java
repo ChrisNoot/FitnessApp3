@@ -17,5 +17,5 @@ public class ExerciseFactController {
         this.exerciseRepository = exerciseRepo;
     }
 
-    
+
 }
