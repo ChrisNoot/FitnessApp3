@@ -17,6 +17,8 @@ import java.util.*;
 @Slf4j
 @Controller
 @RequestMapping("/user")
+@SessionAttribute("categories")
+@SessionAttribute("subcategories")
 public class UserController {
 
 
