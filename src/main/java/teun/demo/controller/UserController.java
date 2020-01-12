@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import teun.demo.domain.Exercise;
 import teun.demo.domain.Group;
 import teun.demo.domain.User;
 import teun.demo.repository.ExerciseRepository;
@@ -17,8 +18,6 @@ import java.util.*;
 @Slf4j
 @Controller
 @RequestMapping("/user")
-@SessionAttribute("categories")
-@SessionAttribute("subcategories")
 public class UserController {
 
 
@@ -73,6 +72,8 @@ public class UserController {
     public User newUser() {
         return new User();
     }
+
+
 
 
     @ModelAttribute(name = "allGroups")
