@@ -2,13 +2,14 @@ package teun.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import teun.demo.domain.Exercise;
 import teun.demo.repository.ExerciseFactRepository;
 import teun.demo.repository.ExerciseRepository;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/Categories")
@@ -23,13 +24,21 @@ public class ExerciseController {
         this.exerciseFactRepository = exerciseFactRepo;
     }
 
-    public String showSubCategories(@ModelAttribute()) {
+    public String showSubCategories(@ModelAttribute ) {
     }
+
+    @PostMapping("")
+    public String processCategory(, Errors errors, SessionStatus sessionStatus) {
+        // SessionStatus
+        log.info("processing order");
+        if (errors.hasErrors()) {
+            return "orderForm";
+        }
 
     public void processCategory()
 
     @ModelAttribute(name = "chosenCategory")
-    public Exercise.Category returnCategory() {
+    public String returnCategory() {
 
         return Exercise.Category.STRENGTH;
     }

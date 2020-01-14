@@ -73,9 +73,6 @@ public class UserController {
         return new User();
     }
 
-
-
-
     @ModelAttribute(name = "allGroups")
     public List<Group> showGroups() {
         List<Group> groups = new ArrayList<>();
