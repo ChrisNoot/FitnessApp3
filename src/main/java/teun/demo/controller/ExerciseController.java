@@ -24,13 +24,13 @@ public class ExerciseController {
         this.exerciseFactRepository = exerciseFactRepo;
     }
 
-    public String showSubCategories(@ModelAttribute ) {
+    public String showSubCategories( ) {
     }
 
     @PostMapping("")
-    public String processCategory(, Errors errors, SessionStatus sessionStatus) {
+    public String processCategory(@ModelAttribute String Category) {
         // SessionStatus
-        log.info("processing order");
+
         if (errors.hasErrors()) {
             return "orderForm";
         }
