@@ -31,10 +31,6 @@ public class ExerciseController {
     public String processCategory(@ModelAttribute String Category) {
         // SessionStatus
 
-        if (errors.hasErrors()) {
-            return "orderForm";
-        }
-
     public void processCategory()
 
     @ModelAttribute(name = "chosenCategory")
