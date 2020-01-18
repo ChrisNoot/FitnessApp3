@@ -12,8 +12,8 @@ import teun.demo.repository.ExerciseRepository;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/Categories")
-@SessionAttributes("chosenCategory")
+@RequestMapping("/categories")
+@SessionAttributes("currentUser")
 public class ExerciseController {
 
     private ExerciseFactRepository exerciseFactRepository;
@@ -25,17 +25,9 @@ public class ExerciseController {
     }
 
     public String showSubCategories( ) {
+        return null;
     }
 
-    @PostMapping("")
-    public String processCategory(@ModelAttribute String Category) {
-        // SessionStatus
 
-    public void processCategory()
 
-    @ModelAttribute(name = "chosenCategory")
-    public String returnCategory() {
-
-        return Exercise.Category.STRENGTH;
-    }
 }

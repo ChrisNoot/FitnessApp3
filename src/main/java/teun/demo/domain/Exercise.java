@@ -28,6 +28,8 @@ public class Exercise {
         CARDIO,SKILL,STRENGTH,WORKOUT
     }
 
+    Category test1 = Category.SKILL;
+
     public enum SubCategory {
         SQUAT,DEADLIFT,ROWSTRENGTH,PUSH,CARRY,LUNGE,OLYMPICLIFT,
         JUMPINGROPE,PISTOLS,BOXJUMP,TGU,MUSCLEUP,TOESTOBAR,HANDSTAND,

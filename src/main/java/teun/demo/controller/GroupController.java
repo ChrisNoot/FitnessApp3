@@ -5,10 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import teun.demo.domain.Group;
 import teun.demo.domain.Group.Day;
 import teun.demo.domain.User;
@@ -60,6 +57,7 @@ public class GroupController {
     public String createGroup() {
         return "createGroup";
     }
+
 
     @GetMapping("/{id}")
     public String showUsersByGroupId(@PathVariable("id") Long id,Model model) {

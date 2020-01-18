@@ -8,7 +8,7 @@
 
 <div th:each="category : ${categories}">
     <span th:text="${category}"></span><br/>
-    <a th:href="@{'/user/' + ${user.id}}">view</a>
+    <a th:href="@{'/user/' + ${user.id}/ + ${category}}">view</a>
 </div>
 
 </body>

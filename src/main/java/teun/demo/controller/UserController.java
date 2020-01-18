@@ -3,6 +3,7 @@ package teun.demo.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import teun.demo.domain.Exercise;
@@ -62,10 +63,17 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public String showUserById(@PathVariable long id) {
-
+    public String showUserById(@PathVariable long id, Model model) {
+        model.addAttribute("currentUser",this.userRepository.findById(id));
         log.info( Long.toString(id));
-        return "showUserById";
+        return "showCategories";
+    }
+
+    @GetMapping("/{id}/{category}")
+    public String showSubcat(@PathVariable long id, @PathVariable String category, Model model) {
+
+        model.addAttribute("currentCategory",category);
+        return "showSubcategories";
     }
 
     @ModelAttribute(name = "user")
@@ -90,13 +98,15 @@ public class UserController {
     @ModelAttribute(name = "categories")
     public Set<String> showCategories() {
         Set<String> categories = new HashSet<>();
-        this.exerciseRepository.findAll().forEach(x->categories.add(x.getCategory().toString()));
+        this.exerciseRepository.findAll().forEach(x->categories.add(x.getCategory().toString().toLowerCase()));
         return categories;
     }
 
     @ModelAttribute(name = "subCategories")
-    public List<String> showSubCategories() {
-        return null;
+    public Set<String> showSubCategories() {
+        Set<String> subCategories = new HashSet<>();
+
+        return subCategories;
     }
 
 }
