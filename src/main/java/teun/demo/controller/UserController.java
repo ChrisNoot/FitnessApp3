@@ -19,7 +19,8 @@ import java.util.*;
 @Slf4j
 @Controller
 @RequestMapping("/user")
-@SessionAttributes("selectedUser")
+@SessionAttributes({"selectedUser", "selectedCategory","selectedSubCategory"})
+
 public class UserController {
 
 
@@ -82,19 +83,21 @@ public class UserController {
     }
 
     @GetMapping("/{id}/{category}/{subCat}")
-    public String showExercise(@PathVariable long id,
+    public String showExercise1(@PathVariable long id,
                                @PathVariable String category,
                                @PathVariable String subCat,
                                Model model) {
-        log.info(category);
-        Collection<String> subCategories = this.exerciseRepository.findSubCategoriesByCategory(category);
-        log.info(subCategories.toString());
-        model.addAttribute("subCategories",subCategories);
-        return "showSubcategories";
+        log.info("dit is je geselecteerde subcat: "+subCat);
+        List<String> exercises = this.exerciseRepository.findExercisesBySubCategory(subCat);
+        log.info("dit zijn je exercises: "+exercises.toString());
+        model.addAttribute("category",category);
+        model.addAttribute("exercises",exercises);
+        return "showExercises";
     }
 
+
     @GetMapping("/{id}/categories")
-    public String showSubcat(@PathVariable long id,Model model) {
+    public String showCat(@PathVariable long id,Model model) {
         model.addAttribute("selectedUser",this.userRepository.findById(id).get());
         return "showCategories";
     }
@@ -134,6 +137,16 @@ public class UserController {
     @ModelAttribute("selectedUser")
     public User findSelectedUser() {
         return new User();
+    }
+
+    @ModelAttribute("selectedCategory")
+    public String findSelectedCategory() {
+        return null;
+    }
+
+    @ModelAttribute("selectedSubCategory")
+    public String findSelectedSubCategory() {
+        return null;
     }
 
 }
