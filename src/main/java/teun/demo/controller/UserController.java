@@ -19,6 +19,7 @@ import java.util.*;
 @Slf4j
 @Controller
 @RequestMapping("/user")
+@SessionAttributes("selectedUser")
 public class UserController {
 
 
@@ -70,10 +71,32 @@ public class UserController {
     }
 
     @GetMapping("/{id}/{category}")
-    public String showSubcat(@PathVariable long id, @PathVariable String category, Model model) {
-
-        model.addAttribute("currentCategory",category);
+    public String showSubcat(@PathVariable long id,
+                             @PathVariable String category,
+                             Model model) {
+        log.info(category);
+        Collection<String> subCategories = this.exerciseRepository.findSubCategoriesByCategory(category);
+        log.info(subCategories.toString());
+        model.addAttribute("subCategories",subCategories);
         return "showSubcategories";
+    }
+
+    @GetMapping("/{id}/{category}/{subCat}")
+    public String showExercise(@PathVariable long id,
+                               @PathVariable String category,
+                               @PathVariable String subCat,
+                               Model model) {
+        log.info(category);
+        Collection<String> subCategories = this.exerciseRepository.findSubCategoriesByCategory(category);
+        log.info(subCategories.toString());
+        model.addAttribute("subCategories",subCategories);
+        return "showSubcategories";
+    }
+
+    @GetMapping("/{id}/categories")
+    public String showSubcat(@PathVariable long id,Model model) {
+        model.addAttribute("selectedUser",this.userRepository.findById(id).get());
+        return "showCategories";
     }
 
     @ModelAttribute(name = "user")
@@ -105,8 +128,12 @@ public class UserController {
     @ModelAttribute(name = "subCategories")
     public Set<String> showSubCategories() {
         Set<String> subCategories = new HashSet<>();
-
         return subCategories;
+    }
+
+    @ModelAttribute("selectedUser")
+    public User findSelectedUser() {
+        return new User();
     }
 
 }

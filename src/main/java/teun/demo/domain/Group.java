@@ -18,13 +18,13 @@ public class Group {
     private Long id;
     private Date createdAt;
     private String hourTime;
-    private Day day;
+    private String day;
 
     public Group(long l, String s, Date date, Day day) {
         this.id = l;
         this.createdAt = date;
         this.hourTime = s;
-        this.day = day;
+        this.day = day.toString().toLowerCase();
     }
 
 

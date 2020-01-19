@@ -17,9 +17,9 @@ public class Exercise {
     private Long id;
 
     private String name;
-    private Category category;
-    private SubCategory subCategory;
-    private MeasuringUnit measuringUnit;
+    private String category;
+    private String subCategory;
+    private String measuringUnit;
 
     @OneToMany
     private Set<ExerciseFact> ExerciseFacts= new HashSet();
@@ -40,9 +40,9 @@ public class Exercise {
     public Exercise(Long id, String name, Category category, SubCategory subCategory, MeasuringUnit mu) {
         this.id = id;
         this.name = name;
-        this.category = category;
-        this.subCategory = subCategory;
-        this.measuringUnit = mu;
+        this.category = category.toString().toLowerCase();
+        this.subCategory = subCategory.toString().toLowerCase();
+        this.measuringUnit = mu.toString().toLowerCase();
     }
 
     public enum MeasuringUnit {
