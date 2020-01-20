@@ -88,7 +88,7 @@ public class UserController {
                                @PathVariable String subCat,
                                Model model) {
         log.info("dit is je geselecteerde subcat: "+subCat);
-        List<String> exercises = this.exerciseRepository.findExercisesBySubCategory(subCat);
+        List<Exercise> exercises = this.exerciseRepository.findExercisesBySubCategory(subCat);
         log.info("dit zijn je exercises: "+exercises.toString());
         model.addAttribute("category",category);
         model.addAttribute("exercises",exercises);

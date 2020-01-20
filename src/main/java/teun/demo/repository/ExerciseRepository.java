@@ -18,6 +18,6 @@ public interface ExerciseRepository extends CrudRepository<Exercise, Long> {
     @Query(
             value = "SELECT * FROM EXERCISE where sub_Category = :subCategory",
             nativeQuery = true)
-    List<String> findExercisesBySubCategory(@Param("subCategory") String subCategory);
+    List<Exercise> findExercisesBySubCategory(@Param("subCategory") String subCategory);
 
 }

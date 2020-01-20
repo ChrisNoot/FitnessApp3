@@ -12,8 +12,7 @@ import teun.demo.repository.ExerciseRepository;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/categories")
-@SessionAttributes("currentUser")
+@RequestMapping("/exercise")
 public class ExerciseController {
 
     private ExerciseFactRepository exerciseFactRepository;
@@ -24,8 +23,8 @@ public class ExerciseController {
         this.exerciseFactRepository = exerciseFactRepo;
     }
 
-    public String showSubCategories( ) {
-        return null;
+    public String exerciseInput(){
+        return "exerciseForm";
     }
 
 

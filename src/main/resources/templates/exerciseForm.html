@@ -5,9 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<div th:each="exercise : ${exercises}">
-    <span th:text="${exercise.toString()}"></span><br/>
-    <a th:href="@{'/exercise/' + ${exercise.id} }">view</a>
+
+<div>
+    <a th:href="@{'/user/' + ${selectedUser.id}+'/'+${category}}">view</a>
 </div>
 
 </body>
