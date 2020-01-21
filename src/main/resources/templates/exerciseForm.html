@@ -5,9 +5,20 @@
     <title>Title</title>
 </head>
 <body>
+<a th:href="@{'/exercise/' + ${exercise.id} +'/' +${selectedUser.id} }">view</a>
 
 <div>
-    <a th:href="@{'/user/' + ${selectedUser.id}+'/'+${category}}">view</a>
+    <form method="POST" th:action="@{/exercise/newFact}" th:object="${exerciseFact}">
+
+        <input type="text" th:field="*{score}" required placeholder="Score"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('score')}"
+              th:errors="*{score}">Score error</span>
+
+        <input type="submit" value="SCORE TOEVOEGEN" class="button gridspan"/>
+    </form>
+
+
 </div>
 
 </body>
