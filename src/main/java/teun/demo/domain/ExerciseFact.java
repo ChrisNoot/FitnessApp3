@@ -31,4 +31,5 @@ public class ExerciseFact {
     public void createDate() {
         this.date = new Date();
     }
+
 }

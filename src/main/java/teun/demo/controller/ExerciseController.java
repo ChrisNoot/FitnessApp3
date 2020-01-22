@@ -48,7 +48,11 @@ public class ExerciseController {
     }
 
     @PostMapping("/newFact")
-    public String ProcessNewFact(@ModelAttribute ExerciseFact exerciseFact) {
+    public String ProcessNewFact(@ModelAttribute ExerciseFact exerciseFact,
+                                 @ModelAttribute User selectedUser) {
+
+        exerciseFact.setUser(selectedUser);
+        log.info(exerciseFact.toString());
         this.exerciseFactRepository.save(exerciseFact);
         return "redirect:/{exerciseId}/{userId}";
     }
