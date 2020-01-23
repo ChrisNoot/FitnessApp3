@@ -51,6 +51,7 @@ public class ExerciseController {
     public String ProcessNewFact(@ModelAttribute ExerciseFact exerciseFact,
                                  @ModelAttribute User selectedUser) {
 
+        String newFact = new String();
         exerciseFact.setUser(selectedUser);
         log.info(exerciseFact.toString());
         this.exerciseFactRepository.save(exerciseFact);
