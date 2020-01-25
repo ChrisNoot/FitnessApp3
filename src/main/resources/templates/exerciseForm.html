@@ -7,6 +7,8 @@
 <body>
 <a th:href="@{'/exercise/' + ${exercise.id} +'/' +${selectedUser.id} }">view</a>
 
+
+
 <div>
     <form method="POST" th:action="@{/exercise/newFact}" th:object="${exerciseFact}">
 
@@ -15,11 +17,12 @@
               th:if="${#fields.hasErrors('score')}"
               th:errors="*{score}">Score error</span>
 
+
         <input type="submit" value="SCORE TOEVOEGEN" class="button gridspan"/>
     </form>
-
-
 </div>
+
+<div>th:with="${exerciseFact.user}={selectedUser}"</div>
 
 </body>
 </html>
