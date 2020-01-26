@@ -21,6 +21,7 @@ public class Exercise {
     private String subCategory;
     private String measuringUnit;
 
+
     @OneToMany
     private Set<ExerciseFact> ExerciseFacts= new HashSet();
 

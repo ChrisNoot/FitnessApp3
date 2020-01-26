@@ -38,10 +38,10 @@ public class ExerciseController {
 
     @GetMapping("/{exerciseId}/{userId}")
     public String exerciseFormInput(@PathVariable Long userId, @PathVariable Long exerciseId, Model model){
-        log.info("id of exercise: " +userId);
+        log.info("id of user " +userId);
         User selectedUser = this.userRepository.findById(userId).get();
         Exercise exercise = this.exerciseRepository.findById(exerciseId).get();
-        Log.info("gekozen exercise: " + exercise.toString());
+        Log.info("gekozen exercise: " + exercise.toString()+"met id: " + exercise.getId());
         model.addAttribute("selectedUser",selectedUser);
         model.addAttribute("exercise",exercise);
         return "exerciseForm";
@@ -55,11 +55,6 @@ public class ExerciseController {
         log.info(exerciseFact.toString());
         this.exerciseFactRepository.save(exerciseFact);
         return "redirect:/{exerciseId}/{userId}";
-    }
-
-    @ModelAttribute("selectedUser")
-    public User selectedUser() {
-        return new User();
     }
 
     @ModelAttribute("exerciseFact")
