@@ -51,6 +51,10 @@ public class ExerciseController {
     public String ProcessNewFact(@ModelAttribute ExerciseFact exerciseFact,
                                  @ModelAttribute User selectedUser) {
 
+        // deze user wordt niet goed geset. Kan blijkbaar niet op basis van transient dingen?
+        // waarom wordt date ook niet goed gebruikt?
+        // exercise gaat ook niet naar het goede
+        // en waarom is de id nog niet gegenerate?
         exerciseFact.setUser(selectedUser);
         log.info(exerciseFact.toString());
         this.exerciseFactRepository.save(exerciseFact);
