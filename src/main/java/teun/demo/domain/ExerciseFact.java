@@ -24,7 +24,7 @@ public class ExerciseFact {
     @ManyToOne
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Exercise exercise;
 
     @PrePersist
