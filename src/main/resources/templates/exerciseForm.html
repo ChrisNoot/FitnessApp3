@@ -7,7 +7,14 @@
 <body>
 <a th:href="@{'/exercise/' + ${exercise.id} +'/' +${selectedUser.id} }">view</a>
 
+<div>
+    <span th:text="${selectedUser.id}" th:remove="tag" >title<</span>
 
+
+</div>
+<div>
+<span th:text="${exercise.id}" th:remove="tag" >title<</span>
+</div>
 
 <div>
     <form method="POST" th:action="@{/exercise/newFact}" th:object="${exerciseFact}">

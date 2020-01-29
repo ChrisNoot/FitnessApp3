@@ -41,7 +41,7 @@ public class ExerciseController {
         log.info("id of user " +userId);
         User selectedUser = this.userRepository.findById(userId).get();
         Exercise exercise = this.exerciseRepository.findById(exerciseId).get();
-        Log.info("gekozen exercise: " + exercise.toString()+"met id: " + exercise.getId());
+        log.info("gekozen exercise: " + exercise.toString()+" met id: " + exercise.getId());
         model.addAttribute("selectedUser",selectedUser);
         model.addAttribute("exercise",exercise);
         return "exerciseForm";
