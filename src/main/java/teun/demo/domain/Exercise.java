@@ -22,7 +22,7 @@ public class Exercise {
     private String measuringUnit;
 
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     private Set<ExerciseFact> ExerciseFacts= new HashSet();
 
     public enum Category {

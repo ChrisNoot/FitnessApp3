@@ -21,7 +21,7 @@ public class ExerciseFact {
     private Date date;
     private String score;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private User user;
 
     @ManyToOne(cascade = CascadeType.ALL)
