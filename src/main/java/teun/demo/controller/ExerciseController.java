@@ -49,8 +49,8 @@ public class ExerciseController {
 
     @PostMapping("/newFact")
     public String ProcessNewFact(@ModelAttribute ExerciseFact exerciseFact,
-                                 @ModelAttribute User selectedUser) {
-
+                                 @ModelAttribute User selectedUser, Model model) {
+        log.info(model.toString());
         // deze user wordt niet goed geset. Kan blijkbaar niet op basis van transient dingen?
         // waarom wordt date ook niet goed gebruikt?
         // exercise gaat ook niet naar het goede
@@ -64,6 +64,11 @@ public class ExerciseController {
     @ModelAttribute("exerciseFact")
     public ExerciseFact newExerciseFact() {
         return new ExerciseFact();
+    }
+
+    @ModelAttribute("selectedUser")
+    public User newSelectedUser() {
+        return new User();
     }
 
 
