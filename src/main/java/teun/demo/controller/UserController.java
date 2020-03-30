@@ -57,28 +57,17 @@ public class UserController {
         return "home";
     }
 
-    @GetMapping("/test")
-    public String showGroupByUserId() {
-        Collection<Long> groupIds = groupRepository.findAllGroupsForUserIdNative(1L);
-        log.info(groupIds.toString());
-        return "userForm";
-    }
-
-    @GetMapping("/{id}")
-    public String showUserById(@PathVariable long id, Model model) {
-        model.addAttribute("currentUser",this.userRepository.findById(id));
-        log.info( Long.toString(id));
-        return "showCategories";
-    }
-
     @GetMapping("/{id}/{category}")
     public String showSubcat(@PathVariable long id,
                              @PathVariable String category,
                              Model model) {
+        log.info("/{id}/{category}");
         log.info(category);
         Collection<String> subCategories = this.exerciseRepository.findSubCategoriesByCategory(category);
         log.info(subCategories.toString());
         model.addAttribute("subCategories",subCategories);
+        log.info("changed subCategories to PathVariable");
+        printModelContent(model.asMap());
         return "showSubcategories";
     }
 
@@ -87,35 +76,38 @@ public class UserController {
                                @PathVariable String category,
                                @PathVariable String subCat,
                                Model model) {
+        log.info("/{id}/{category}/{subCat}");
+        log.info("dit is je geselecteerde category: "+category);
         log.info("dit is je geselecteerde subcat: "+subCat);
         List<Exercise> exercises = this.exerciseRepository.findExercisesBySubCategory(subCat);
         log.info("dit zijn je exercises: "+exercises.toString());
         model.addAttribute("category",category);
         model.addAttribute("exercises",exercises);
+        log.info("changed category to PathVariable");
+        log.info("changed exercises to PathVariable");
+        printModelContent(model.asMap());
         return "showExercises";
     }
 
 
     @GetMapping("/{id}/categories")
     public String showCat(@PathVariable long id,Model model) {
+        log.info("/{id}/categories");
+        log.info("changed selectedUser to PathVariable");
         model.addAttribute("selectedUser",this.userRepository.findById(id).get());
+        printModelContent(model.asMap());
         return "showCategories";
     }
 
     @ModelAttribute(name = "user")
     public User newUser() {
+        log.info("created user");
         return new User();
-    }
-
-    @ModelAttribute(name = "allGroups")
-    public List<Group> showGroups() {
-        List<Group> groups = new ArrayList<>();
-        this.groupRepository.findAll().forEach(e -> groups.add(e));
-        return groups;
     }
 
     @ModelAttribute(name = "allUsers")
     public List<User> showUser() {
+        log.info("created allUsers");
         List<User> users = new ArrayList<>();
         this.userRepository.findAll().forEach(users::add);
         return users;
@@ -123,6 +115,7 @@ public class UserController {
 
     @ModelAttribute(name = "categories")
     public Set<String> showCategories() {
+        log.info("created empty Categories");
         Set<String> categories = new HashSet<>();
         this.exerciseRepository.findAll().forEach(x->categories.add(x.getCategory().toString().toLowerCase()));
         return categories;
@@ -130,23 +123,35 @@ public class UserController {
 
     @ModelAttribute(name = "subCategories")
     public Set<String> showSubCategories() {
+        log.info("created empty subCategories");
         Set<String> subCategories = new HashSet<>();
         return subCategories;
     }
 
     @ModelAttribute("selectedUser")
     public User findSelectedUser() {
+        log.info("created empty selectedUser");
         return new User();
     }
 
     @ModelAttribute("selectedCategory")
     public String findSelectedCategory() {
+        log.info("created selectedCategory");
         return null;
     }
 
     @ModelAttribute("selectedSubCategory")
     public String findSelectedSubCategory() {
+        log.info("created selectedSubCategory");
         return null;
+    }
+
+    public void printModelContent(Map model) {
+        log.info("Objects in model:");
+        for (Object modelObject : model.keySet()) {
+            log.info(modelObject + " "+ model.get(modelObject));
+        }
+        log.info("EINDE");
     }
 
 }

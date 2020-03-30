@@ -31,7 +31,7 @@ public class GroupController {
 
     @GetMapping("/show")
     public String showGroups(Model model) {
-
+        log.info("groups/show");
         List<Group> groups = new ArrayList<>();
         this.groupRepository.findAll().forEach(groups::add);
 
@@ -44,12 +44,14 @@ public class GroupController {
                             .filter(x -> x.getDay().equals(day))
                             .collect(Collectors.toList()));
         }
-        log.info(model.asMap().toString());
+        printModelContent(model.asMap());
         return "showGroups";
     }
 
     @GetMapping("/all")
-    public String showAllGroups() {
+    public String showAllGroups(Model model) {
+        log.info("groups/all");
+        printModelContent(model.asMap());
         return "showAllGroups";
     }
 
@@ -61,19 +63,30 @@ public class GroupController {
 
     @GetMapping("/{id}")
     public String showUsersByGroupId(@PathVariable("id") Long id,Model model) {
+        log.info("groups/{id}");
         List<User> users = new ArrayList<>();
         Collection<Long> userIds = groupRepository.findAllUsersForGroupIdNative(id);
         log.info(userIds.toString());
         userRepository.findAllById(userIds).forEach(x -> users.add(x));
         model.addAttribute("users",users);
+        printModelContent(model.asMap());
         return "showUsersByGroupId";
     }
 
     @ModelAttribute(name = "allGroups")
     public List<Group> showGroups() {
+        log.info("created allGroups");
         List<Group> groups = new ArrayList<>();
         this.groupRepository.findAll().forEach(e -> groups.add(e));
         return groups;
+    }
+
+    public void printModelContent(Map model) {
+        log.info("Objects in model:");
+        for (Object modelObject : model.keySet()) {
+            log.info(modelObject + " "+ model.get(modelObject));
+        }
+        log.info("EINDE");
     }
 
 
