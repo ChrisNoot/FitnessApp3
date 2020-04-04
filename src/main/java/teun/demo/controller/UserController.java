@@ -115,39 +115,20 @@ public class UserController {
 
     @ModelAttribute(name = "categories")
     public Set<String> showCategories() {
-        log.info("created empty Categories");
+        log.info("Put categories in Model");
         Set<String> categories = new HashSet<>();
         this.exerciseRepository.findAll().forEach(x->categories.add(x.getCategory().toString().toLowerCase()));
         return categories;
     }
 
-    @ModelAttribute(name = "subCategories")
-    public Set<String> showSubCategories() {
-        log.info("created empty subCategories");
-        Set<String> subCategories = new HashSet<>();
-        return subCategories;
-    }
-
     @ModelAttribute("selectedUser")
     public User findSelectedUser() {
-        log.info("created empty selectedUser");
+        log.info("created new object selectedUser");
         return new User();
     }
 
-    @ModelAttribute("selectedCategory")
-    public String findSelectedCategory() {
-        log.info("created selectedCategory");
-        return null;
-    }
-
-    @ModelAttribute("selectedSubCategory")
-    public String findSelectedSubCategory() {
-        log.info("created selectedSubCategory");
-        return null;
-    }
-
     public void printModelContent(Map model) {
-        log.info("Objects in model:");
+        log.info("OBJECTS IN MODEL:");
         for (Object modelObject : model.keySet()) {
             log.info(modelObject + " "+ model.get(modelObject));
         }

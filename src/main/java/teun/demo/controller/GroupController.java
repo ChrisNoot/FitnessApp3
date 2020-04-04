@@ -82,7 +82,7 @@ public class GroupController {
     }
 
     public void printModelContent(Map model) {
-        log.info("Objects in model:");
+        log.info("OBJECTS IN MODEL:");
         for (Object modelObject : model.keySet()) {
             log.info(modelObject + " "+ model.get(modelObject));
         }
