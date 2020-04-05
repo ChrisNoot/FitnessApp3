@@ -19,7 +19,7 @@ import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/exercise")
+
 @Slf4j
 @SessionAttributes("selectedUser")
 public class ExerciseController {
@@ -35,39 +35,6 @@ public class ExerciseController {
         this.exerciseFactRepository = exerciseFactRepo;
         this.exerciseRepository = exerciseRepo;
         this.userRepository = userRepo;
-    }
-
-    @GetMapping("/{exerciseId}/{userId}")
-    public String exerciseFormInput(@PathVariable Long userId, @PathVariable Long exerciseId, Model model){
-        log.info("/{exerciseId}/{userId}");
-        log.info("id of user " +userId);
-        User selectedUser = this.userRepository.findById(userId).get();
-        Exercise exercise = this.exerciseRepository.findById(exerciseId).get();
-        log.info("gekozen exercise: " + exercise.toString()+" met id: " + exercise.getId());
-        model.addAttribute("selectedUser",selectedUser);
-        model.addAttribute("exercise",exercise);
-        printModelContent(model.asMap());
-        return "exerciseForm";
-    }
-
-    @PostMapping("/newFact")
-    public String ProcessNewFact(@ModelAttribute ExerciseFact exerciseFact,
-                                 @ModelAttribute User selectedUser, Model model) {
-        // deze user wordt niet goed geset. Kan blijkbaar niet op basis van transient dingen?
-        // waarom wordt date ook niet goed gebruikt?
-        // exercise gaat ook niet naar het goede
-        // en waarom is de id nog niet gegenerate?
-        log.info("/newFact");
-        exerciseFact.setUser(selectedUser);
-        printModelContent(model.asMap());
-        log.info(exerciseFact.toString());
-        this.exerciseFactRepository.save(exerciseFact);
-        return "redirect:/{exerciseId}/{userId}";
-    }
-
-    @ModelAttribute("exerciseFact")
-    public ExerciseFact newExerciseFact() {
-        return new ExerciseFact();
     }
 
     @ModelAttribute("selectedUser")

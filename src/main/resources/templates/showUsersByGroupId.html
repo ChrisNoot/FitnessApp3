@@ -8,7 +8,7 @@
 <div>
     <div th:each="user : ${users}">
         <span th:text="${user.toString()}"></span><br/>
-        <a th:href="@{'/user/' + ${user.id}+'/categories'}">view</a>
+        <a th:href="@{'/exercise/' + ${user.id}+'/categories'}">view</a>
     </div>
 </div>
 </body>

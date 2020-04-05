@@ -8,10 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import javax.persistence.*;
 import java.util.Date;
 
-@Slf4j
-@Data
-@NoArgsConstructor(access =  AccessLevel.PUBLIC,force = true)
 @Entity
+@NoArgsConstructor(access =  AccessLevel.PUBLIC,force = true)
+@Data
+@Slf4j
 public class ExerciseFact {
 
     @Id
