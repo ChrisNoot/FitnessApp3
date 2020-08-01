@@ -15,7 +15,7 @@ import teun.demo.repository.UserRepository;
 import java.util.*;
 
 @Slf4j
-@SessionAttributes({"selectedUser", "selectedCategory","selectedSubCategory"})
+@SessionAttributes({"selectedUser", "selectedCategory", "selectedSubCategory", "selectedExercise"})
 @Controller
 @RequestMapping("/exercise")
 public class ExerciseFactController {
@@ -34,10 +34,10 @@ public class ExerciseFactController {
     }
 
     @GetMapping("/{id}/categories")
-    public String showCat(@PathVariable long id,Model model) {
+    public String showCat(@PathVariable long id, Model model) {
         log.info("/{id}/categories");
         log.info("changed selectedUser to PathVariable");
-        model.addAttribute("selectedUser",this.userRepository.findById(id).get());
+        model.addAttribute("selectedUser", this.userRepository.findById(id).get());
         printModelContent(model.asMap());
         return "showCategories";
     }
@@ -50,7 +50,7 @@ public class ExerciseFactController {
         log.info(category);
         Collection<String> subCategories = this.exerciseRepository.findSubCategoriesByCategory(category);
         log.info(subCategories.toString());
-        model.addAttribute("subCategories",subCategories);
+        model.addAttribute("subCategories", subCategories);
         log.info("changed subCategories to PathVariable");
         printModelContent(model.asMap());
         return "showSubcategories";
@@ -62,12 +62,12 @@ public class ExerciseFactController {
                                 @PathVariable String subCat,
                                 Model model) {
         log.info("/{id}/{category}/{subCat}");
-        log.info("dit is je geselecteerde category: "+category);
-        log.info("dit is je geselecteerde subcat: "+subCat);
+        log.info("dit is je geselecteerde category: " + category);
+        log.info("dit is je geselecteerde subcat: " + subCat);
         List<Exercise> exercises = this.exerciseRepository.findExercisesBySubCategory(subCat);
-        log.info("dit zijn je exercises: "+exercises.toString());
-        model.addAttribute("category",category);
-        model.addAttribute("exercises",exercises);
+        log.info("dit zijn je exercises: " + exercises.toString());
+        model.addAttribute("category", category);
+        model.addAttribute("exercises", exercises);
         log.info("changed category to PathVariable");
         log.info("changed exercises to PathVariable");
         printModelContent(model.asMap());
@@ -75,39 +75,49 @@ public class ExerciseFactController {
     }
 
     @GetMapping("/{exerciseId}")
-    public String exerciseFormInput( @PathVariable Long exerciseId, Model model){
+    public String exerciseFormInput(@PathVariable long exerciseId, Model model) {
         log.info("/{exerciseId}/{userId}");
         //log.info("id of user " +userId);
         //User selectedUser = this.userRepository.findById(userId).get();
         Exercise exercise = this.exerciseRepository.findById(exerciseId).get();
-        log.info("gekozen exercise: " + exercise.toString()+" met id: " + exercise.getId());
+        log.info("gekozen exercise: " + exercise.toString() + " met id: " + exercise.getId());
         //model.addAttribute("selectedUser",selectedUser);
-        model.addAttribute("exercise",exercise);
+        model.addAttribute("selectedExercise", exercise);
         printModelContent(model.asMap());
         return "exerciseForm";
     }
 
     @PostMapping("/newFact")
-    public String ProcessNewFact(@ModelAttribute ExerciseFact exerciseFact,
-                                 @ModelAttribute User selectedUser, Model model) {
+    public String ProcessNewFact(@ModelAttribute ExerciseFact exerciseFact, Model model) {
         // deze user wordt niet goed geset. Kan blijkbaar niet op basis van transient dingen?
         // waarom wordt date ook niet goed gebruikt?
         // exercise gaat ook niet naar het goede
         // en waarom is de id nog niet gegenerate?
         log.info("/newFact");
-        exerciseFact.setUser(selectedUser);
+        log.info("class van exerciseFact is " + exerciseFact.getClass());
+        exerciseFact.setUser((User) model.getAttribute("selectedUser"));
+        exerciseFact.setExercise((Exercise) model.getAttribute("selectedUser"));
+        exerciseFactRepository.insertNewExerciseFactUserIdExerciseIdScore(
+                exerciseFact.getUser().getId(),
+                exerciseFact.getExercise().getId(),
+                exerciseFact.getScore());
         printModelContent(model.asMap());
         log.info(exerciseFact.toString());
-        this.exerciseFactRepository.save(exerciseFact);
-        return "redirect:/{exerciseId}/{userId}";
+        return "exerciseForm";
     }
 
     // ModelAttributes
+    @ModelAttribute(name = "exercise")
+    public Exercise findExercise() {
+        return new Exercise();
+    }
+
+
     @ModelAttribute(name = "categories")
     public Set<String> showCategories() {
         log.info("Put categories in Model");
         Set<String> categories = new HashSet<>();
-        this.exerciseRepository.findAll().forEach(x->categories.add(x.getCategory().toString().toLowerCase()));
+        this.exerciseRepository.findAll().forEach(x -> categories.add(x.getCategory().toLowerCase()));
         return categories;
     }
 
@@ -115,6 +125,12 @@ public class ExerciseFactController {
     public User findSelectedUser() {
         log.info("created new object selectedUser");
         return new User();
+    }
+
+    @ModelAttribute("selectedExercise")
+    public Exercise findSelectedExercise() {
+        log.info("created new object selectedUser");
+        return new Exercise();
     }
 
     @ModelAttribute("exerciseFact")
@@ -125,7 +141,7 @@ public class ExerciseFactController {
     public void printModelContent(Map model) {
         log.info("OBJECTS IN MODEL:");
         for (Object modelObject : model.keySet()) {
-            log.info(modelObject + " "+ model.get(modelObject));
+            log.info(modelObject + " " + model.get(modelObject));
         }
         log.info("EINDE");
     }
