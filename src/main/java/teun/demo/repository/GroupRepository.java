@@ -4,12 +4,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import teun.demo.domain.Group;
-import teun.demo.domain.User;
 
 import java.util.Collection;
-import java.util.List;
 
-public interface GroupRepository extends CrudRepository<Group,Long> {
+public interface GroupRepository extends CrudRepository<Group, Long> {
 
     @Query(
             value = "SELECT groups_id FROM USER_TABLE_GROUPS where users_id = :userId",
