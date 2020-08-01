@@ -19,7 +19,7 @@ public class ExerciseFact {
     private Long id;
 
     private Date date;
-    private String score;
+    private Long score;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
@@ -31,5 +31,4 @@ public class ExerciseFact {
     public void createDate() {
         this.date = new Date();
     }
-
 }
