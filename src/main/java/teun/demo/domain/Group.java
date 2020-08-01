@@ -5,11 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.DayOfWeek;
-import java.util.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
-@NoArgsConstructor(access =  AccessLevel.PUBLIC,force = true)
+@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
 @Entity
 @Table(name = "groupTable")
 public class Group {
@@ -38,7 +39,7 @@ public class Group {
     }
 
     public String toString() {
-        return day.toString().toLowerCase() +" "+ hourTime;
+        return day.toLowerCase() + " " + hourTime;
     }
 
     @ManyToMany(mappedBy = "groups")
