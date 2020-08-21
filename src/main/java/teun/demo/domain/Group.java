@@ -28,7 +28,6 @@ public class Group {
         this.day = day.toString().toLowerCase();
     }
 
-
     public enum Day {
         MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
     }
