@@ -71,6 +71,7 @@ public class ExerciseFactController {
         log.info("changed category to PathVariable");
         log.info("changed exercises to PathVariable");
         printModelContent(model.asMap());
+        System.out.println("hello");
         return "showExercises";
     }
 
@@ -96,7 +97,7 @@ public class ExerciseFactController {
         log.info("/newFact");
         log.info("class van exerciseFact is " + exerciseFact.getClass());
         exerciseFact.setUser((User) model.getAttribute("selectedUser"));
-        exerciseFact.setExercise((Exercise) model.getAttribute("selectedUser"));
+        exerciseFact.setExercise((Exercise) model.getAttribute("selectedExercise"));
         exerciseFactRepository.insertNewExerciseFactUserIdExerciseIdScore(
                 exerciseFact.getUser().getId(),
                 exerciseFact.getExercise().getId(),
