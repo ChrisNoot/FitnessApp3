@@ -12,8 +12,8 @@ import java.util.Set;
 @Data
 @NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
 @Entity
-@Table(name = "groupTable")
-public class Group {
+@Table(name = "crowd")
+public class Crowd {
 
     @Id
     private Long id;
@@ -21,7 +21,7 @@ public class Group {
     private String hourTime;
     private String day;
 
-    public Group(long l, String s, Date date, Day day) {
+    public Crowd(long l, String s, Date date, Day day) {
         this.id = l;
         this.createdAt = date;
         this.hourTime = s;
@@ -41,7 +41,7 @@ public class Group {
         return day.toLowerCase() + " " + hourTime;
     }
 
-    @ManyToMany(mappedBy = "groups")
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<User> users = new HashSet<>();
 
 }

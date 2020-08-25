@@ -48,7 +48,7 @@ public class NewUserController {
         if (errors.hasErrors()) {
             return "userForm";
         }
-        log.info(user.getGroups().toString());
+        log.info(user.getCrowds().toString());
         userRepository.save(user);
         return "home";
     }

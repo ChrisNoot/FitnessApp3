@@ -20,59 +20,59 @@
 
     <main class="main-wrapper">
 
-    <div class="ingredient-group" id="monday">
+    <div class="ingredient-crowd" id="monday">
         <div>Maandag:</div>
-        <div th:each="group : ${monday}">
+        <div th:each="crowd : ${monday}">
             <input name="hours" type="checkbox" th:value="${hour}"/>
-            <span th:text="${group.hourTime}">hourTime</span><br/>
+            <span th:text="${crowd.hourTime}">hourTime</span><br/>
         </div>
     </div>
 
-    <div class="ingredient-group" id="tuesday">
+    <div class="ingredient-crowd" id="tuesday">
         <div>Dinsdag:</div>
-        <div th:each="group : ${tuesday}">
+        <div th:each="crowd : ${tuesday}">
             <input name="hours" type="checkbox" th:value="${hour}"/>
-            <span th:text="${group.hourTime}">hourTime</span><br/>
+            <span th:text="${crowd.hourTime}">hourTime</span><br/>
         </div>
     </div>
 
-    <div class="ingredient-group" id="wednesday">
+    <div class="ingredient-crowd" id="wednesday">
         <div>Woensdag:</div>
-        <div th:each="group : ${wednesday}">
+        <div th:each="crowd : ${wednesday}">
             <input name="hours" type="checkbox" th:value="${hour}"/>
-            <span th:text="${group.hourTime}">hourTime</span><br/>
+            <span th:text="${crowd.hourTime}">hourTime</span><br/>
         </div>
     </div>
 
-    <div class="ingredient-group" id="thursday">
+    <div class="ingredient-crowd" id="thursday">
         <div>Donderdag:</div>
-        <div th:each="group : ${thursday}">
+        <div th:each="crowd : ${thursday}">
             <input name="hours" type="checkbox" th:value="${hour}"/>
-            <span th:text="${group.hourTime}">hourTime</span><br/>
+            <span th:text="${crowd.hourTime}">hourTime</span><br/>
         </div>
     </div>
 
-    <div class="ingredient-group" id="friday">
+    <div class="ingredient-crowd" id="friday">
         <div>Vrijdag:</div>
-        <div th:each="group : ${friday}">
+        <div th:each="crowd : ${friday}">
             <input name="hours" type="checkbox" th:value="${hour}"/>
-            <span th:text="${group.hourTime}">hourTime</span><br/>
+            <span th:text="${crowd.hourTime}">hourTime</span><br/>
         </div>
     </div>
 
-    <div class="ingredient-group" id="saturday">
+    <div class="ingredient-crowd" id="saturday">
         <div>Zaterdag:</div>
-        <div th:each="group : ${saturday}">
+        <div th:each="crowd : ${saturday}">
             <input name="hours" type="checkbox" th:value="${hour}"/>
-            <span th:text="${group.hourTime}">hourTime</span><br/>
+            <span th:text="${crowd.hourTime}">hourTime</span><br/>
         </div>
     </div>
 
-    <div class="ingredient-group" id="sunday">
+    <div class="ingredient-crowd" id="sunday">
         <div>Zondag:</div>
-        <div th:each="group : ${sunday}">
+        <div th:each="crowd : ${sunday}">
             <input name="hours" type="checkbox" th:value="${hour}"/>
-            <span th:text="${group.hourTime}">hourTime</span><br/>
+            <span th:text="${crowd.hourTime}">hourTime</span><br/>
         </div>
     </div>
 </main>

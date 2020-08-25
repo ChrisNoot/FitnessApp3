@@ -11,7 +11,7 @@ import java.util.*;
 @Entity
 @NoArgsConstructor(access =  AccessLevel.PUBLIC,force = true)
 @Data
-@Table(name="userTable")
+@Table(name="user_table")
 public class User {
 
     @Id
@@ -45,9 +45,13 @@ public class User {
         createdAt = new Date();
     }
 
-    @ManyToMany
-    @Size(min = 1, message = "Kies minimaal 1 groep.")
-    private List<Group> groups = new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "crowd_user_table",
+            joinColumns = @JoinColumn(name = "USERS_ID"),
+            inverseJoinColumns = @JoinColumn(name = "crowd_id"))
+//    @Size(min = 1, message = "Kies minimaal 1 groep.") // doe dit bij ontvangst in de restcontroller op een eigen dto
+    private List<Crowd> crowds = new ArrayList<>();
 
     @OneToMany
     private Set<ExerciseFact> exerciseFacts = new HashSet<>();
@@ -66,7 +70,7 @@ public class User {
                 String geboortedatum,
                 String email,
                 String telefoonnummer,
-                List<Group> groups) {
+                List<Crowd> crowds) {
         this.id = id;
         this.createdAt = date;
         this.naam = naam;
@@ -76,7 +80,7 @@ public class User {
         this.geboortedatum = geboortedatum;
         this.email = email;
         this.telefoonnummer = telefoonnummer;
-        this.groups = groups;
+        this.crowds = crowds;
     }
 
 }
