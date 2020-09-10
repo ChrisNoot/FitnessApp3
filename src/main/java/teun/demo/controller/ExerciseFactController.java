@@ -92,18 +92,10 @@ public class ExerciseFactController {
     @Transactional
     @PostMapping("/newFact")
     public String ProcessNewFact(@ModelAttribute ExerciseFact exerciseFact, Model model) {
-        // deze user wordt niet goed geset. Kan blijkbaar niet op basis van transient dingen?
-        // waarom wordt date ook niet goed gebruikt?
-        // exercise gaat ook niet naar het goede
-        // en waarom is de id nog niet gegenerate?
         log.info("/newFact");
         log.info("class van exerciseFact is " + exerciseFact.getClass());
         exerciseFact.setUser((User) model.getAttribute("selectedUser"));
         exerciseFact.setExercise((Exercise) model.getAttribute("selectedExercise"));
-//        exerciseFactRepository.insertNewExerciseFactUserIdExerciseIdScore(
-//                exerciseFact.getUser().getId(),
-//                exerciseFact.getExercise().getId(),
-//                exerciseFact.getScore());
         exerciseFactRepository.save(exerciseFact);
         printModelContent(model.asMap());
         log.info(exerciseFact.toString());
