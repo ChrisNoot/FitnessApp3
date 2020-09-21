@@ -8,9 +8,7 @@
 <a th:href="@{'/exercise/' + ${exercise.id} +'/' +${selectedUser.id} }">view</a>
 
 <div>
-    <span th:text="${selectedUser.id}" th:remove="tag" >title<</span>
-
-
+    <span th:text="${selectedUser.name}" th:remove="tag" >title<</span>
 </div>
 <div>
 <span th:text="${exercise.id}" th:remove="tag" >title<</span>
@@ -18,13 +16,16 @@
 
 <div>
     <form method="POST" th:action="@{/exercise/newFact}" th:object="${exerciseFact}">
-
         <input type="text" th:field="*{score}" required placeholder="Score"/>
         <span class="validationError"
               th:if="${#fields.hasErrors('score')}"
               th:errors="*{score}">Score error</span>
         <input type="submit" value="SCORE TOEVOEGEN" class="button gridspan"/>
     </form>
+</div>
+
+<div th:each="exerciseFact : ${exerciseFacts}">
+    <span th:text="${exerciseFact.toString()}"></span><br/>
 </div>
 
 
