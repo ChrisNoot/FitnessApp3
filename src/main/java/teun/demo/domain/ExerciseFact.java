@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Entity
@@ -18,17 +21,17 @@ public class ExerciseFact {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    private Date date;
+    private LocalDateTime date;
     private Long score;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private User user;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Exercise exercise;
 
     @PrePersist
     public void createDate() {
-        this.date = new Date();
+        this.date = LocalDateTime.now();
     }
 }
