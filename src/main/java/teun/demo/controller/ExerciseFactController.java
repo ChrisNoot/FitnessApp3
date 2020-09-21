@@ -3,6 +3,7 @@ package teun.demo.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import teun.demo.domain.Exercise;
@@ -78,11 +79,8 @@ public class ExerciseFactController {
     @GetMapping("/{exerciseId}")
     public String exerciseFormInput(@PathVariable long exerciseId, Model model) {
         log.info("/{exerciseId}/{userId}");
-        //log.info("id of user " +userId);
-        //User selectedUser = this.userRepository.findById(userId).get();
         Exercise exercise = this.exerciseRepository.findById(exerciseId).get();
         log.info("gekozen exercise: " + exercise.toString() + " met id: " + exercise.getId());
-        //model.addAttribute("selectedUser",selectedUser);
         model.addAttribute("selectedExercise", exercise);
         printModelContent(model.asMap());
         return "exerciseForm";
@@ -90,20 +88,17 @@ public class ExerciseFactController {
 
     @PostMapping("/newFact")
     public String ProcessNewFact(@ModelAttribute ExerciseFact exerciseFact, Model model) {
-        // deze user wordt niet goed geset. Kan blijkbaar niet op basis van transient dingen?
-        // waarom wordt date ook niet goed gebruikt?
-        // exercise gaat ook niet naar het goede
-        // en waarom is de id nog niet gegenerate?
         log.info("/newFact");
         log.info("class van exerciseFact is " + exerciseFact.getClass());
-        exerciseFact.setUser((User) model.getAttribute("selectedUser"));
-        exerciseFact.setExercise((Exercise) model.getAttribute("selectedExercise"));
-        exerciseFactRepository.insertNewExerciseFactUserIdExerciseIdScore(
-                exerciseFact.getUser().getId(),
-                exerciseFact.getExercise().getId(),
-                exerciseFact.getScore());
+        User selectedUser = (User) model.getAttribute("selectedUser");
+        Exercise selectedExercise = (Exercise) model.getAttribute("selectedExercise");
+        exerciseFact.setUser(selectedUser);
+        exerciseFact.setExercise(selectedExercise);
+        exerciseFactRepository.save(exerciseFact);
         printModelContent(model.asMap());
         log.info(exerciseFact.toString());
+        List<ExerciseFact> exerciseFacts = exerciseFactRepository.findExerciseFactByUserIdAndExerciseId(selectedUser.getId(), selectedExercise.getId());
+        model.addAttribute("exerciseFacts", exerciseFacts);
         return "exerciseForm";
     }
 
