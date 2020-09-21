@@ -141,6 +141,4 @@ public class ExerciseFactController {
         }
         log.info("EINDE");
     }
-
-
 }
