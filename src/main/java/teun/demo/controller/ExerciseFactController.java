@@ -3,7 +3,6 @@ package teun.demo.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import teun.demo.domain.Exercise;
@@ -54,7 +53,7 @@ public class ExerciseFactController {
         model.addAttribute("subCategories", subCategories);
         log.info("changed subCategories to PathVariable");
         printModelContent(model.asMap());
-        return "showSubcategories";
+        return "showSubCategories";
     }
 
     @GetMapping("/{id}/{category}/{subCat}")
