@@ -1,16 +1,16 @@
 package teun.demo.repository;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.query.Param;
 import teun.demo.domain.ExerciseFact;
 
-@Repository
+import java.util.List;
+
 public interface ExerciseFactRepository extends CrudRepository<ExerciseFact, Long> {
 
-//    @Query(
-//            value = "INSERT INTO EXERCISE_FACT (user_id, exercise_id, score) VALUES (:userId, :exerciseId, :score)",
-//            nativeQuery = true)
-//    void insertNewExerciseFactUserIdExerciseIdScore(@Param("userId") Long userId,
-//                                                    @Param("exerciseId") Long exerciseId,
-//                                                    @Param("score") Long score);
+    @Query(
+            value = "select * from exercise_fact where user_id = :userId and exercise_id = :exerciseId",
+            nativeQuery = true)
+    List<ExerciseFact> findExerciseFactByUserIdAndExerciseId(@Param("userId") Long userId, @Param("exerciseId") Long exerciseId);
 }

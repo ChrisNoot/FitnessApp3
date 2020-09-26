@@ -12,7 +12,6 @@ import teun.demo.repository.ExerciseFactRepository;
 import teun.demo.repository.ExerciseRepository;
 import teun.demo.repository.UserRepository;
 
-import javax.transaction.Transactional;
 import java.util.*;
 
 @Slf4j
@@ -86,16 +85,19 @@ public class ExerciseFactController {
         return "exerciseForm";
     }
 
-    @Transactional
     @PostMapping("/newFact")
     public String ProcessNewFact(@ModelAttribute ExerciseFact exerciseFact, Model model) {
         log.info("/newFact");
         log.info("class van exerciseFact is " + exerciseFact.getClass());
-        exerciseFact.setUser((User) model.getAttribute("selectedUser"));
-        exerciseFact.setExercise((Exercise) model.getAttribute("selectedExercise"));
+        User selectedUser = (User) model.getAttribute("selectedUser");
+        Exercise selectedExercise = (Exercise) model.getAttribute("selectedExercise");
+        exerciseFact.setUser(selectedUser);
+        exerciseFact.setExercise(selectedExercise);
         exerciseFactRepository.save(exerciseFact);
         printModelContent(model.asMap());
         log.info(exerciseFact.toString());
+        List<ExerciseFact> exerciseFacts = exerciseFactRepository.findExerciseFactByUserIdAndExerciseId(selectedUser.getId(), selectedExercise.getId());
+        model.addAttribute("exerciseFacts", exerciseFacts);
         return "exerciseForm";
     }
 
