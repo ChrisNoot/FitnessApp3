@@ -47,7 +47,7 @@ public class User {
 
     @ManyToMany
     @Size(min = 1, message = "Kies minimaal 1 groep.")
-    private List<Group> groups = new ArrayList<>();
+    private List<Crowd> groups = new ArrayList<>();
 
     @OneToMany
     private Set<ExerciseFact> exerciseFacts = new HashSet<>();
@@ -66,7 +66,7 @@ public class User {
                 String dateOfBirth,
                 String email,
                 String phoneNumber,
-                List<Group> groups) {
+                List<Crowd> groups) {
         this.id = id;
         this.createdAt = date;
         this.name = name;
