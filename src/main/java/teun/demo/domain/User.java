@@ -47,7 +47,7 @@ public class User {
 
     @ManyToMany
     @Size(min = 1, message = "Kies minimaal 1 groep.")
-    private List<Crowd> groups = new ArrayList<>();
+    private List<Crowd> crowds = new ArrayList<>();
 
     @OneToMany
     private Set<ExerciseFact> exerciseFacts = new HashSet<>();
@@ -76,7 +76,7 @@ public class User {
         this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.groups = groups;
+        this.crowds = groups;
     }
 
 }
