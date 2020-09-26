@@ -12,6 +12,7 @@ import teun.demo.repository.ExerciseFactRepository;
 import teun.demo.repository.ExerciseRepository;
 import teun.demo.repository.UserRepository;
 
+import javax.transaction.Transactional;
 import java.util.*;
 
 @Slf4j
@@ -53,7 +54,7 @@ public class ExerciseFactController {
         model.addAttribute("subCategories", subCategories);
         log.info("changed subCategories to PathVariable");
         printModelContent(model.asMap());
-        return "showSubcategories";
+        return "showSubCategories";
     }
 
     @GetMapping("/{id}/{category}/{subCat}")
@@ -78,30 +79,21 @@ public class ExerciseFactController {
     @GetMapping("/{exerciseId}")
     public String exerciseFormInput(@PathVariable long exerciseId, Model model) {
         log.info("/{exerciseId}/{userId}");
-        //log.info("id of user " +userId);
-        //User selectedUser = this.userRepository.findById(userId).get();
         Exercise exercise = this.exerciseRepository.findById(exerciseId).get();
         log.info("gekozen exercise: " + exercise.toString() + " met id: " + exercise.getId());
-        //model.addAttribute("selectedUser",selectedUser);
         model.addAttribute("selectedExercise", exercise);
         printModelContent(model.asMap());
         return "exerciseForm";
     }
 
+    @Transactional
     @PostMapping("/newFact")
     public String ProcessNewFact(@ModelAttribute ExerciseFact exerciseFact, Model model) {
-        // deze user wordt niet goed geset. Kan blijkbaar niet op basis van transient dingen?
-        // waarom wordt date ook niet goed gebruikt?
-        // exercise gaat ook niet naar het goede
-        // en waarom is de id nog niet gegenerate?
         log.info("/newFact");
         log.info("class van exerciseFact is " + exerciseFact.getClass());
         exerciseFact.setUser((User) model.getAttribute("selectedUser"));
         exerciseFact.setExercise((Exercise) model.getAttribute("selectedExercise"));
-        exerciseFactRepository.insertNewExerciseFactUserIdExerciseIdScore(
-                exerciseFact.getUser().getId(),
-                exerciseFact.getExercise().getId(),
-                exerciseFact.getScore());
+        exerciseFactRepository.save(exerciseFact);
         printModelContent(model.asMap());
         log.info(exerciseFact.toString());
         return "exerciseForm";
@@ -146,6 +138,4 @@ public class ExerciseFactController {
         }
         log.info("EINDE");
     }
-
-
 }
