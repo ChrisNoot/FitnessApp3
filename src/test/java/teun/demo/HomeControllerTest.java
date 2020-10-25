@@ -9,8 +9,8 @@ import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest() // Special test annotation provided by Spring Boot
-// that arranges for the test to run in the context of a Spring MVC application
+/*@WebMvcTest() // Special test annotation provided by Spring Boot
+ that arranges for the test to run in the context of a Spring MVC application
 public class HomeControllerTest {
 
     @Autowired
@@ -24,3 +24,4 @@ public class HomeControllerTest {
                 .andExpect(content().string(containsString("Welcome to")));
     }
 }
+*/
