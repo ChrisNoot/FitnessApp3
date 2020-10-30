@@ -24,7 +24,7 @@ body {
   height: 100vh;
   overflow: hidden;
   background-color: #222;
-  background-image: url("../img/background2.jpg");
+  background-image: url("../images/background3.jpg");
   background-size: cover;
   color: white;
 }
@@ -77,13 +77,6 @@ body {
   height: 90vh;
 }
 
-.wrapper-main {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-
 /* BUTTON */
 .button {
   font-size: 1rem;
@@ -128,64 +121,41 @@ body {
   margin: 0;
 }
 
-/* DRAAIBOX */
-.draaibox {
-  background: -webkit-gradient(linear, left top, right top, from(rgba(243, 156, 18, 0.4)), to(rgba(230, 100, 34, 0.4)));
-  background: linear-gradient(to right, rgba(243, 156, 18, 0.4), rgba(230, 100, 34, 0.4));
-  width: 225px;
-  height: 350px;
-  border-radius: 10px;
-  text-align: center;
-  margin: auto;
-  -webkit-transition: -webkit-transform;
-  transition: -webkit-transform;
-  transition: transform;
-  transition: transform, -webkit-transform;
-  -webkit-transform: rotate(135deg);
-          transform: rotate(135deg);
-  border: 1px solid #f39c12;
+/* FORM */
+form {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  margin: 0 50px 0 auto;
+  grid-gap: 30px;
+  width: 60%;
+  height: 100%;
 }
 
-.draaibox:hover,
-.draaibox:focus {
-  -webkit-transform: scale(1.2);
-          transform: scale(1.2);
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
-  -webkit-transition: .5s;
-  transition: .5s;
-  color: #f39c12;
+input {
+  padding: 1em 2em;
+  font-size: 1.5rem;
+  position: relative;
 }
 
-.draaibox-naam {
-  font-weight: bold;
-  margin: 1em;
-  -webkit-transform: rotate(-135deg);
-          transform: rotate(-135deg);
-  font-weight: 300;
-  color: #fff;
+input:hover,
+input:focus {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  border: 1px solid #e66422;
 }
 
-.draaibox:hover .draaibox-naam {
-  -webkit-transform: rotate(-180deg);
-          transform: rotate(-180deg);
-  -webkit-transition: .5s;
-  transition: .5s;
-}
-
-.draaibox-image {
-  border-radius: 50%;
-  width: 100%;
-  padding: 1em;
-  -webkit-transform: rotate(-135deg);
-          transform: rotate(-135deg);
-}
-
-.draaibox:hover .draaibox-image {
-  -webkit-transform: rotate(-180deg);
-          transform: rotate(-180deg);
-  -webkit-transition: .5s;
-  transition: .5s;
+.button-form {
+  grid-column: 1/-1;
+  -ms-grid-row: 5;
+  -ms-grid-row-span: 1;
+  grid-row: 5/6;
+  font-size: 1.5rem;
+  padding: .5em 2em;
+  border: 0px;
 }
 
 /* MEDIA QUERIES */
@@ -205,4 +175,8 @@ body {
         grid-template-columns: 1fr 1fr;
   }
 }
-/*# sourceMappingURL=categorie.css.map */
+
+.validationError {
+  display: none;
+}
+/*# sourceMappingURL=account.css.map */

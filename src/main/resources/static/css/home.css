@@ -24,7 +24,7 @@ body {
   height: 100vh;
   overflow: hidden;
   background-color: #222;
-  background-image: url("../img/background2.jpg");
+  background-image: url("../images/background2.jpg");
   background-size: cover;
   color: white;
 }

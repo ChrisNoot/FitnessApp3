@@ -1,0 +1,34 @@
+/* BASICS */
+
+@import "css/basics";
+
+/* COLORS */
+
+@import "Colors/colors";
+
+/* BODY */
+
+@import "css/body";
+body {
+@include body (url("../images/background3.jpg"));
+}
+
+/* WRAPPERS */
+
+@import "css/wrappers";
+
+/* BUTTON */
+
+@import "css/button";
+
+/* FORM */
+
+@import "css/form_account";
+
+/* MEDIA QUERIES */
+
+@import "css/media_queries";
+
+.validationError {
+    display: none;
+}

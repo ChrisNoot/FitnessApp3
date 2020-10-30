@@ -1,0 +1,36 @@
+/* BASICS */
+
+@import "css/basics";
+
+/* COLORS */
+
+@import "Colors/colors";
+
+/* BODY */
+
+@import "css/body";
+body {
+@include body (url("../images/background2.jpg"));
+}
+
+/* WRAPPERS */
+
+@import "css/wrappers";
+
+.wrapper-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+/* BUTTON */
+
+@import "css/button";
+
+/* DRAAIBOX */
+
+@import "css/draaibox_2";
+
+
+/* MEDIA QUERIES */
+
+@import "css/media_queries";

@@ -1,21 +1,21 @@
 /* BASICS */
 
-@import "./basics";
+@import "css/basics";
 
 /* COLORS */
 
-@import "./colors";
+@import "Colors/colors";
 
 /* BODY */
 
-@import "./body";
+@import "css/body";
 body {
-@include body (url("../img/background4.jpg"));
+@include body (url("../images/background4.jpg"));
 }
 
 /* WRAPPERS */
 
-@import "./wrappers";
+@import "css/wrappers";
 
 .wrapper-main {
     display: grid;
@@ -26,12 +26,12 @@ body {
 
 /* BUTTON */
 
-@import "./button";
+@import "css/button";
 
 /* INVOER TABEL */
 
-@import "./tabel_a";
+@import "css/tabel_a";
 
 /* MEDIA QUERIES */
 
-@import "./media_queries";
+@import "css/media_queries";
