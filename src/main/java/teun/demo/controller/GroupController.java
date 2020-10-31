@@ -55,12 +55,6 @@ public class GroupController {
         return "showAllGroups";
     }
 
-    @GetMapping("/new")
-    public String createGroup() {
-        return "createGroup";
-    }
-
-
     @GetMapping("/{id}")
     public String showUsersByGroupId(@PathVariable("id") Long id,Model model) {
         log.info("groups/{id}");

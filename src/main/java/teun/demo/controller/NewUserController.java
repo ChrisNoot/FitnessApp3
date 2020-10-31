@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import teun.demo.domain.Group;
 import teun.demo.domain.User;
+import teun.demo.repository.GroupRepository;
 import teun.demo.repository.UserRepository;
 
 import javax.validation.Valid;
@@ -24,10 +27,12 @@ public class NewUserController {
 
 
     private UserRepository userRepository;
+    private GroupRepository groupRepository;
 
     @Autowired
-    public NewUserController(UserRepository userRepository) {
+    public NewUserController(UserRepository userRepository, GroupRepository groupRepository) {
         this.userRepository = userRepository;
+        this.groupRepository= groupRepository;
     }
 
 
@@ -63,6 +68,14 @@ public class NewUserController {
         List<User> users = new ArrayList<>();
         this.userRepository.findAll().forEach(users::add);
         return users;
+    }
+
+    @ModelAttribute(name = "allGroups")
+    public List<Group> showGroups() {
+        log.info("created allGroups");
+        List<Group> groups = new ArrayList<>();
+        this.groupRepository.findAll().forEach(groups::add);
+        return groups;
     }
 
     public void printModelContent(Map model) {
