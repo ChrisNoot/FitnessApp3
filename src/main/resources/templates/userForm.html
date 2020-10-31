@@ -1,69 +1,72 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 
-
+<!--
 <head>
     <title>FitBook | Account aanmaken</title>
     <link rel="stylesheet" th:href="@{/styles.css}"/>
-    <link href="css/account.css" rel="stylesheet">
+    <link href="../static/css/account.css" rel="stylesheet">
 </head>
-<body>
-      <header class='wrapper-header'>
-            <a href="home.html" class="header-logo"><img src="img/Logo-Wilgen-Training.png" alt="brand" class="logo"></a>
-            <h1 class= "header-title">MAAK NIEUW ACCOUNT AAN</h1>
-            <nav class="navigation">
-                <a th:href="@{/}" href="home.html" id="newUser" class="button">TERUG</a>
-            </nav>
-      </header>
+-->
 
-      <main class="wrapper-main">
-      <form method="POST" th:action="@{/user/new}" th:object="${user}">
-   
-   <input type="text" th:field="*{naam}" required placeholder="Naam"/>
-    <span class="validationError"
-          th:if="${#fields.hasErrors('naam')}"
-          th:errors="*{naam}">Naam error</span>
+<header class='wrapper-header'>
+    <a href="/" class="header-logo"><img src="../static/images/Logo-Wilgen-Training.png" alt="brand" class="logo"></a>
+    <h1 class="header-title">MAAK NIEUW ACCOUNT AAN</h1>
+    <nav class="navigation">
+        <a th:href="@{/}" href="home.html" id="newUser" class="button">TERUG</a>
+    </nav>
+</header>
 
-    <input type="text" th:field="*{gebruikersnaam}" required placeholder="Gebruikersnaam"/>
-    <span class="validationError"
-          th:if="${#fields.hasErrors('gebruikersnaam')}"
-          th:errors="*{gebruikersnaam}">gebruikersnaam error</span>
-    
-    <input type="text" th:field="*{geboortedatum}" required placeholder="Geboortedatum"/>
-    <span class="validationError"
-          th:if="${#fields.hasErrors('geboortedatum')}"
-          th:errors="*{geboortedatum}">Geboortedatum error</span>
+<main class="wrapper-main">
+    <body>
+    <form method="POST" th:action="@{/user/new}" th:object="${user}">
 
-      <input type="text" th:field="*{email}" required placeholder="Email"/>
-      <span class="validationError"
-          th:if="${#fields.hasErrors('email')}"
-          th:errors="*{email}">Email error</span>
+        <input type="text" th:field="*{name}" required placeholder="Naam"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}">Name error</span>
 
-      <input type="text" th:field="*{lengte}" required placeholder="Lengte"/>
-      <span class="validationError"
-          th:if="${#fields.hasErrors('lengte')}"
-          th:errors="*{lengte}">lengte error</span>
-  
-    <input type="text" th:field="*{gewicht}" required placeholder="Gewicht"/>
-    <span class="validationError"
-          th:if="${#fields.hasErrors('gewicht')}"
-          th:errors="*{gewicht}">Gewicht error</span>
-    
-    <input type="text" th:field="*{telefoonnummer}" required placeholder="Telefoonnummer"/>
-    <span class="validationError"
-          th:if="${#fields.hasErrors('telefoonnummer')}"
-          th:errors="*{telefoonnummer}">Telefoonnummer error</span>
+        <input type="text" th:field="*{username}" required placeholder="Gebruikersnaam"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('username')}"
+              th:errors="*{username}">gebruikersnaam error</span>
+
+        <input type="text" th:field="*{dateOfBirth}" required placeholder="Geboortedatum"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('dateOfBirth')}"
+              th:errors="*{dateOfBirth}">Geboortedatum error</span>
+
+        <input type="text" th:field="*{email}" required placeholder="Email"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('email')}"
+              th:errors="*{email}">Email error</span>
+
+        <input type="text" th:field="*{length}" required placeholder="Lengte"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('length')}"
+              th:errors="*{length}">lengte error</span>
+
+        <input type="text" th:field="*{weight}" required placeholder="Gewicht"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('weight')}"
+              th:errors="*{weight}">Gewicht error</span>
+
+        <input type="text" th:field="*{phoneNumber}" required placeholder="Telefoonnummer"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('phoneNumber')}"
+              th:errors="*{phoneNumber}">Telefoonnummer error</span>
         <div>
-        
-         <div th:each="group : ${allGroups}">
-            <input name="groups" type="checkbox" th:value="${group.id}"/>
-            <span th:text="${group.toString()}"></span><br/>
+
+            <div th:each="group : ${allGroups}">
+                <input name="groups" type="checkbox" th:value="${group.id}"/>
+                <span th:text="${group.toString()}"></span><br/>
+            </div>
+
         </div>
-    </div>
 
-    <input type="submit" value="ACCOUNT AANMAKEN" class="button gridspan"/>
+        <input type="submit" value="ACCOUNT AANMAKEN" class="button gridspan"/>
 
+    </form>
+    </body>
 </main>
-</form>
-</body>
 </html>
