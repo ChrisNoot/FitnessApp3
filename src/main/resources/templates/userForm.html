@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 
-<!--
+
 <head>
     <title>FitBook | Account aanmaken</title>
     <link rel="stylesheet" th:href="@{/styles.css}"/>
     <link href="../static/css/account.css" rel="stylesheet">
 </head>
--->
+
 
 <header class='wrapper-header'>
     <a href="/" class="header-logo"><img src="../static/images/Logo-Wilgen-Training.png" alt="brand" class="logo"></a>
@@ -55,14 +55,12 @@
         <span class="validationError"
               th:if="${#fields.hasErrors('phoneNumber')}"
               th:errors="*{phoneNumber}">Telefoonnummer error</span>
-        <div>
 
             <div th:each="group : ${allGroups}">
                 <input name="groups" type="checkbox" th:value="${group.id}"/>
                 <span th:text="${group.toString()}"></span><br/>
             </div>
 
-        </div>
 
         <input type="submit" value="ACCOUNT AANMAKEN" class="button gridspan"/>
 
