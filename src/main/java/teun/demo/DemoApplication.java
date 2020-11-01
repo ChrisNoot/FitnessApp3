@@ -41,7 +41,7 @@ public class DemoApplication {
                 List<Group> testGroups = new ArrayList<>();
                 testGroups.add(group1);
                 testGroups.add(group2);
-                userRepo.save(new User(1L, new Date(), "teun", "teunajax", "70",
+                userRepo.save(new User(1L, new Date(), "Teun", "teunajax", "70",
                     "180", "15-05-1992", "chris.nooteboom@gmail.com", "0618571699", testGroups)
                 );
                 exerciseRepo.save(new Exercise(1L, "Front Squat", Category.STRENGTH, SubCategory.SQUAT, MeasuringUnit.KG));
