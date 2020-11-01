@@ -1,33 +1,100 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>FitBook | Accounts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="../static/css/account.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,700&display=swap" rel="stylesheet">
 </head>
+
+<header class='wrapper-header'>
+    <a href="/" class="header-logo"><img src="../static/images/Logo-Wilgen-Training.png" alt="brand" class="logo"></a>
+    <h1 class="header-title" th:text="${selectedUser.name} +', kies je score voor ' + ${selectedExercise.name}"></h1>
+    <nav class="navigation">
+        <a href="/" class="button header-button">TERUG</a>
+    </nav>
+</header>
+
 <body>
-<a th:href="@{'/exercise/' + ${exercise.id} +'/' +${selectedUser.id} }">view</a>
-
-<div>
-    <span th:text="${selectedUser.name}" th:remove="tag" >title<</span>
-</div>
-<div>
-<span th:text="${exercise.id}" th:remove="tag" >title<</span>
-</div>
-
-<div>
-    <form method="POST" th:action="@{/exercise/newFact}" th:object="${exerciseFact}">
-        <input type="text" th:field="*{score}" required placeholder="Score"/>
-        <span class="validationError"
-              th:if="${#fields.hasErrors('score')}"
-              th:errors="*{score}">Score error</span>
-        <input type="submit" value="SCORE TOEVOEGEN" class="button gridspan"/>
-    </form>
-</div>
-
-<div th:each="exerciseFact : ${exerciseFacts}">
-    <span th:text="${exerciseFact.toString()}"></span><br/>
-</div>
+<main class="main-wrapper">
 
 
+    <div>
+        <span th:text="${exercise.id}" th:remove="tag">title<</span>
+    </div>
+
+    <div>
+        <body>
+        <form method="POST" th:action="@{/exercise/newFact}" th:object="${exerciseFact}">
+            <input type="text" th:field="*{score}" required placeholder="Score"/>
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('score')}"
+                  th:errors="*{score}">Score error</span>
+            <input type="submit" value="SCORE TOEVOEGEN" class="button gridspan"/>
+        </form>
+        </body>
+    </div>
+
+    <div th:each="exerciseFact : ${exerciseFacts}">
+        <span th:text="${exerciseFact.toString()}"></span><br/>
+    </div>
+
+
+
+    <html>
+    <head>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script th:inline="javascript" type="text/javascript">
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            var categories = [[${categories}]];
+            var i;
+            var newArray = [
+                ['is het gelukt','kaching']
+            ];
+            for (i = 0; i < categories.length; i++) {
+                newArray.push([categories[i],i])
+            }
+            /*
+                        var exerciseFacts = [[${exerciseFacts}]];
+                        var i;
+                        var newArray = [
+                            ['hallo','Score']
+                        ];
+                        if (exerciseFacts.length > 0) {
+                            for (i = 0; i < exerciseFacts.length; i++) {
+                                newArray.push([i.toString(),i])
+                            }
+                        }
+                        else {
+                            newArray.push(['1',1])
+                        }
+             */
+            function drawChart() {
+
+                var data = google.visualization.arrayToDataTable(newArray);
+
+                var options = {
+                    title: 'Company Performance',
+                    hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+                    vAxis: {minValue: 0}
+                };
+
+                var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+            }
+        </script>
+    </head>
+    <body>
+    <div id="chart_div" style="width: 100%; height: 500px;"></div>
+    </body>
+    </html>
+
+
+</main>
 </body>
 </html>
