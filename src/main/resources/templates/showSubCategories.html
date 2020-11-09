@@ -10,7 +10,7 @@
 </head>
 <header class='wrapper-header'>
     <a href="/" class="header-logo"><img src="../../static/images/Logo-Wilgen-Training.png" alt="brand" class="logo"></a>
-    <h1 class="header-title">Subcategories</h1>
+    <h1 class="header-title">KIES SUBCATEGORY</h1>
     <nav class="navigation">
         <a href="/" class="button header-button">TERUG</a>
     </nav>
@@ -21,8 +21,8 @@
 
     <div th:each="subCategory : ${subCategories}" class="draaibox">
         <a th:href="@{'/exercise/' + ${selectedUser.id} +'/' + ${category} +'/' + ${subCategory}}">
-            <img src="../static/images/crossfit.png" class="draaibox-image">
-            <h1 th:text="${subCategory}" class="draaibox-naam"></h1>
+            <img th:src="@{'../../static/images/'+${category}+'_w.png'}" class="draaibox-image">
+            <h1 th:text="${#strings.capitalize(subCategory)}" class="draaibox-naam"></h1>
         </a>
     </div>
 

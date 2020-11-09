@@ -6,7 +6,7 @@
     <title>FitBook | Categories </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../../static/css/account.css" rel="stylesheet">
+    <link href="../../static/css/categorie.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,700&display=swap" rel="stylesheet">
     <title>FITSCORE | Your ultimate stat home!</title>
 </head>
@@ -14,7 +14,7 @@
 
 <header class='wrapper-header'>
     <a href="/" class="header-logo"><img src="../../static/images/Logo-Wilgen-Training.png" alt="brand" class="logo"></a>
-    <h1 class="header-title">MAAK NIEUW ACCOUNT AAN</h1>
+    <h1 class="header-title">KIES CATEGORIE</h1>
     <nav class="navigation">
         <a th:href="@{/}" href="home.html" id="newUser" class="button">TERUG</a>
     </nav>
@@ -23,14 +23,31 @@
 <body>
 <main class="main-wrapper">
 
-    <div th:each="category : ${categories}">
-        <span th:text="${category}"></span><br/>
-        <a th:href="@{'/exercise/' + ${selectedUser.id}+'/'+${category}}">view</a>
+    <div th:each="category : ${categories}" class="draaibox">
+        <a th:href="@{'/exercise/' + ${selectedUser.id}+'/'+${category}}">
+            <img th:src="@{'../../static/images/'+${category}+'_w.png'}" class="draaibox-image">
+            <h1 class="draaibox-naam" th:text="${#strings.capitalize(category)}"></h1>
+        </a>
     </div>
+<!--
+    <div class="draaibox">
+        <a href="gymnastics.html">
+            <img src="../static/images/gymnastics_w.png" class="draaibox-image">
+            <h1 class="draaibox-naam">Skills</h1>
+        </a>
+    </div>
+
+    <div class="draaibox">
+        <a href="wod.html">
+            <img src="../static/images/workout_w.png" class="draaibox-image">
+            <h1 class="draaibox-naam">Wods</h1>
+        </a>
+    </div>
+    -->
 
 </main>
 </body>
 </html>
 
-
+</main>
 
