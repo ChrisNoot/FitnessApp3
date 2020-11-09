@@ -1,11 +1,14 @@
 package teun.demo.controller;
 
+import javafx.scene.chart.Chart;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
 import teun.demo.domain.Exercise;
 import teun.demo.domain.ExerciseFact;
 import teun.demo.domain.User;
@@ -13,7 +16,12 @@ import teun.demo.repository.ExerciseFactRepository;
 import teun.demo.repository.ExerciseRepository;
 import teun.demo.repository.UserRepository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 @Slf4j
 @SessionAttributes({"selectedUser", "selectedCategory", "selectedSubCategory", "selectedExercise"})
@@ -37,7 +45,7 @@ public class ExerciseFactController {
     @GetMapping("/{id}/categories")
     public String showCat(@PathVariable long id, Model model) {
         log.info("/{id}/categories");
-        log.info("changed selectedUser to PathVariable");
+        log.info("changed selectedUser to " + this.userRepository.findById(id).get().toString());
         model.addAttribute("selectedUser", this.userRepository.findById(id).get());
         printModelContent(model.asMap());
         return "showCategories";
@@ -86,6 +94,27 @@ public class ExerciseFactController {
         return "exerciseForm";
     }
 
+    class ChartEntry {
+
+        public Long getScore() {
+            return score;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        Long score;
+        String date;
+
+        public ChartEntry(Long score, LocalDateTime dateTime) {
+            this.score = score;
+            this.date = dateTime.format(DateTimeFormatter.ISO_DATE).toString();
+        }
+
+
+    }
+
     @PostMapping("/newFact")
     public String ProcessNewFact(@ModelAttribute ExerciseFact exerciseFact, Model model) {
         log.info("/newFact");
@@ -96,9 +125,9 @@ public class ExerciseFactController {
         exerciseFact.setExercise(selectedExercise);
         exerciseFactRepository.save(exerciseFact);
         printModelContent(model.asMap());
-        log.info(exerciseFact.toString());
+
         List<ExerciseFact> exerciseFacts = exerciseFactRepository.findExerciseFactByUserIdAndExerciseId(selectedUser.getId(), selectedExercise.getId());
-        model.addAttribute("exerciseFacts", exerciseFacts);
+        model.addAttribute("exerciseFacts", exerciseFacts.stream().map(x -> new ChartEntry(x.getScore(), x.getDate())).collect(Collectors.toList()));
         return "exerciseForm";
     }
 
@@ -127,6 +156,11 @@ public class ExerciseFactController {
     public Exercise findSelectedExercise() {
         log.info("created new object selectedUser");
         return new Exercise();
+    }
+
+    @ModelAttribute("exerciseFacts")
+    public List<ExerciseFact> newExerciseFacts() {
+        return new ArrayList<>();
     }
 
     @ModelAttribute("exerciseFact")
