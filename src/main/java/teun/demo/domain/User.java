@@ -45,11 +45,11 @@ public class User {
         createdAt = new Date();
     }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @Size(min = 1, message = "Kies minimaal 1 groep.")
     private List<Group> groups = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<ExerciseFact> exerciseFacts = new HashSet<>();
 
     @Override
