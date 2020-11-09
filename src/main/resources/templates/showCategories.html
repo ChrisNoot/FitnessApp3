@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <title>FitBook | Categories </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../static/css/account.css" rel="stylesheet">
+    <link href="../../static/css/account.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,700&display=swap" rel="stylesheet">
     <title>FITSCORE | Your ultimate stat home!</title>
 </head>
+
+
 <header class='wrapper-header'>
-    <a href="/" class="header-logo"><img src="../static/images/Logo-Wilgen-Training.png" alt="brand" class="logo"></a>
-    <h1 class="header-title">KIES CATEGORIE</h1>
+    <a href="/" class="header-logo"><img src="../../static/images/Logo-Wilgen-Training.png" alt="brand" class="logo"></a>
+    <h1 class="header-title">MAAK NIEUW ACCOUNT AAN</h1>
     <nav class="navigation">
-        <a th:href="@{/}" class="button">TERUG</a>
+        <a th:href="@{/}" href="home.html" id="newUser" class="button">TERUG</a>
     </nav>
 </header>
+
 <body>
+<main class="main-wrapper">
 
-<div th:each="category : ${categories}">
-    <span th:text="${category}"></span><br/>
-    <a th:href="@{'/exercise/' + ${selectedUser.id}+'/'+${category}}">view</a>
-</div>
+    <div th:each="category : ${categories}">
+        <span th:text="${category}"></span><br/>
+        <a th:href="@{'/exercise/' + ${selectedUser.id}+'/'+${category}}">view</a>
+    </div>
 
+</main>
 </body>
 </html>
+
+
 
