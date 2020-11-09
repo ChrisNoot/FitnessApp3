@@ -41,7 +41,7 @@ public class Group {
         return day.toLowerCase() + " " + hourTime;
     }
 
-    @ManyToMany(mappedBy = "groups")
+    @ManyToMany(mappedBy = "groups", fetch = FetchType.EAGER)
     private Set<User> users = new HashSet<>();
 
 }
