@@ -21,20 +21,18 @@
 <body>
 <main class="main-wrapper">
 
-
-    <div>
-        <span th:text="${exercise.id}" th:remove="tag">title<</span>
-    </div>
+    <div id="chart_div" style="width: 50%; height: 400px;"></div>
 
     <div>
         <body>
-        <form method="POST" th:action="@{/exercise/newFact}" th:object="${exerciseFact}">
-            <input type="text" th:field="*{score}" required placeholder="Score"/>
+        <form id="scoreForm" method="POST" th:action="@{/exercise/newFact}" th:object="${exerciseFact}">
+            <input type="number" th:field="*{score}" required placeholder="Score" max="10000"/>
             <span class="validationError"
                   th:if="${#fields.hasErrors('score')}"
                   th:errors="*{score}">Score error</span>
             <input type="submit" value="SCORE TOEVOEGEN" class="button gridspan"/>
         </form>
+
         </body>
     </div>
 
@@ -42,59 +40,42 @@
         <span th:text="${exerciseFact.toString()}"></span><br/>
     </div>
 
+    <script>
+        document.getElementById("scoreForm").addEventListener("submit", (ev) => {
+            console.log(ev.toString())
+        })
 
+    </script>
 
-    <html>
-    <head>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script th:inline="javascript" type="text/javascript">
-            google.charts.load('current', {'packages':['corechart']});
+    <script th:inline="javascript" type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script th:inline="javascript" type="text/javascript">
+        google.charts.load('current', {'packages': ['corechart']});
+
+        const exerciseFacts = [[${exerciseFacts}]];
+        const exerciseScores = [["string", "string"], ...exerciseFacts.map(({date, score}) => {
+            return [date, score];
+        })];
+
+        if(exerciseFacts.length !== 0) {
             google.charts.setOnLoadCallback(drawChart);
+        }
 
-            var categories = [[${categories}]];
-            var i;
-            var newArray = [
-                ['is het gelukt','kaching']
-            ];
-            for (i = 0; i < categories.length; i++) {
-                newArray.push([categories[i],i])
-            }
-            /*
-                        var exerciseFacts = [[${exerciseFacts}]];
-                        var i;
-                        var newArray = [
-                            ['hallo','Score']
-                        ];
-                        if (exerciseFacts.length > 0) {
-                            for (i = 0; i < exerciseFacts.length; i++) {
-                                newArray.push([i.toString(),i])
-                            }
-                        }
-                        else {
-                            newArray.push(['1',1])
-                        }
-             */
-            function drawChart() {
+        function drawChart() {
 
-                var data = google.visualization.arrayToDataTable(newArray);
+            const dataTable = google.visualization.arrayToDataTable(exerciseScores);
 
-                var options = {
-                    title: 'Company Performance',
-                    hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
-                    vAxis: {minValue: 0}
-                };
+            const options = {
+                title: 'Jouw Performance',
+                hAxis: {title: 'Year', titleTextStyle: {color: '#333'}},
+                vAxis: {minValue: 0}
+            };
 
-                var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-                chart.draw(data, options);
-            }
-        </script>
-    </head>
-    <body>
-    <div id="chart_div" style="width: 100%; height: 500px;"></div>
-    </body>
-    </html>
-
-
+            const chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+            chart.draw(dataTable, options);
+        }
+    </script>
 </main>
 </body>
 </html>
+
+
