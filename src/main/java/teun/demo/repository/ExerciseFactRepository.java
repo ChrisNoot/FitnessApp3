@@ -3,6 +3,8 @@ package teun.demo.repository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
+
 import teun.demo.domain.ExerciseFact;
 
 import java.util.List;
