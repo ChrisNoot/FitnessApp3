@@ -1,6 +1,6 @@
 /* BASICS */
 
-@import "css/basics";
+@import "../css/basics";
 
 /* COLORS */
 
@@ -8,14 +8,14 @@
 
 /* BODY */
 
-@import "css/body";
+@import "../css/body";
 body {
 @include body (url("../images/background2.jpg"));
 }
 
 /* WRAPPERS */
 
-@import "css/wrappers";
+@import "../css/wrappers";
 
 .wrapper-main {
     display: grid;
@@ -24,12 +24,12 @@ body {
 
 /* BUTTON */
 
-@import "css/button";
+@import "../css/button";
 
 /* DRAAIBOX */
 
-@import "css/draaibox";
+@import "../css/draaibox";
 
 /* MEDIA QUERIES */
 
-@import "css/media_queries";
+@import "../css/media_queries";
