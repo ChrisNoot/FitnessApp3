@@ -24,7 +24,7 @@ public class ExerciseFact {
     private LocalDateTime date;
     private Long score;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
     @ManyToOne
