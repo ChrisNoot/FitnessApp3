@@ -36,16 +36,15 @@
         </body>
     </div>
 
-    <div th:each="exerciseFact : ${exerciseFacts}">
-        <span th:text="${exerciseFact.toString()}"></span><br/>
-    </div>
+    <table border=3px width="">
+        <th>Datum</th>
+        <th>Score</th>
+        <tr data-th-each="exerciseFact : ${exerciseFacts}">
+            <td data-th-text="${exerciseFact.date}">Zeg het maar</td>
+            <td data-th-text="${exerciseFact.score}">Dit ook</td>
+        </tr>
+    </table>
 
-    <script>
-        document.getElementById("scoreForm").addEventListener("submit", (ev) => {
-            console.log(ev.toString())
-        })
-
-    </script>
 
     <script th:inline="javascript" type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script th:inline="javascript" type="text/javascript">
