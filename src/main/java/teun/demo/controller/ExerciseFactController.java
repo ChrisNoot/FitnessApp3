@@ -109,7 +109,7 @@ public class ExerciseFactController {
 
         public ChartEntry(Long score, LocalDateTime dateTime) {
             this.score = score;
-            this.date = dateTime.format(DateTimeFormatter.ISO_DATE).toString();
+            this.date = dateTime.format(DateTimeFormatter.ISO_DATE);
         }
 
 
