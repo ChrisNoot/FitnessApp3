@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import teun.demo.domain.Group;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface GroupRepository extends CrudRepository<Group, Long> {
 
@@ -18,4 +19,6 @@ public interface GroupRepository extends CrudRepository<Group, Long> {
             value = "SELECT users_id FROM USER_TABLE_GROUPS where groups_id = :groupId",
             nativeQuery = true)
     Collection<Long> findAllUsersForGroupIdNative(@Param("groupId") Long groupId);
+
+    List<Group> findAll();
 }
