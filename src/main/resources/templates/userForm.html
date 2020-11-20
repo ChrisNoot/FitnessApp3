@@ -56,15 +56,72 @@
               th:if="${#fields.hasErrors('phoneNumber')}"
               th:errors="*{phoneNumber}">Telefoonnummer error</span>
 
-            <div th:each="group : ${allGroups}">
-                <input name="groups" type="checkbox" th:value="${group.id}"/>
-                <span th:text="${group.toString()}"></span><br/>
-            </div>
+        <table border=3px width="">
+            <th>
+                <tr>
+                    <td>Dag</td>
+                    <td th:colspan="${colSpanLength}">Tijden</td>
+                </tr>
+            </th>
+            <tr>
+                <td>Maandag</td>
+                <td th:each="group : ${allGroups}" th:if="${group.day}== 'monday'">
+                    <input name="groups" type="checkbox" th:value="${group.id}">
+                        <span th:text="${group.hourTime}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Dinsdag</td>
+                <td th:each="group : ${allGroups}" th:if="${group.day}== 'tuesday'">
+                    <input name="groups" type="checkbox" th:value="${group.id}">
+                        <span th:text="${group.hourTime}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Woensdag</td>
+                <td th:each="group : ${allGroups}" th:if="${group.day}== 'wednesday'">
+                    <input name="groups" type="checkbox" th:value="${group.id}">
+                        <span th:text="${group.hourTime}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Donderdag</td>
+                <td th:each="group : ${allGroups}" th:if="${group.day}== 'thursday'">
+                    <input name="groups" type="checkbox" th:value="${group.id}">
+                        <span th:text="${group.hourTime}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Vrijdag</td>
+                <td th:each="group : ${allGroups}" th:if="${group.day}== 'friday'">
+                    <input name="groups" type="checkbox" th:value="${group.id}">
+                        <span th:text="${group.hourTime}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Zaterdag</td>
+                <td th:each="group : ${allGroups}" th:if="${group.day}== 'saturday'">
+                    <input name="groups" type="checkbox" th:value="${group.id}">
+                        <span th:text="${group.hourTime}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Zondag</td>
+                <td th:each="group : ${allGroups}" th:if="${group.day}== 'sunday'">
+                    <input name="groups" type="checkbox" th:value="${group.id}">
+                        <span th:text="${group.hourTime}"></span>
+                </td>
+            </tr>
 
-
+        </table>
         <input type="submit" value="ACCOUNT AANMAKEN" class="button gridspan"/>
 
     </form>
     </body>
 </main>
 </html>
+
+<!--<div th:each="group : ${allGroups}">-->
+<!--    <input name="groups" type="checkbox" th:value="${group.id}"/>-->
+<!--    <span th:text="${group.toString()}"></span><br/>-->
+<!--</div>-->

@@ -17,8 +17,10 @@ import teun.demo.repository.UserRepository;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Controller
@@ -37,7 +39,8 @@ public class NewUserController {
 
 
     @GetMapping("/new")
-    public String createNewUser() {
+    public String createNewUser(Model model) {
+        model.addAttribute("colSpanLength", calculateMaxGroup());
         return "userForm";
     }
 
@@ -84,6 +87,12 @@ public class NewUserController {
             log.info(modelObject + " "+ model.get(modelObject));
         }
         log.info("EINDE");
+    }
+
+    private long calculateMaxGroup() {
+        Map<String,Long> map = groupRepository.findAll().stream()
+            .collect(Collectors.groupingBy(Group::getDay, Collectors.counting()));
+        return map.values().stream().max(Comparator.naturalOrder()).orElse(3L);
     }
 
 }

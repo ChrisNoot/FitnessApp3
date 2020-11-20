@@ -88,6 +88,4 @@ public class GroupController {
             .collect(Collectors.groupingBy(Group::getDay, Collectors.counting()));
         return map.values().stream().max(Comparator.naturalOrder()).orElse(3L);
     }
-
-
 }
