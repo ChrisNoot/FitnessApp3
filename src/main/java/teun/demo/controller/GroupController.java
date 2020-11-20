@@ -51,6 +51,7 @@ public class GroupController {
     public String showAllGroups(Model model) {
         log.info("groups/all");
         printModelContent(model.asMap());
+        model.addAttribute("colSpanLength", calculateMaxGroup());
         return "showAllGroups";
     }
 
@@ -80,6 +81,12 @@ public class GroupController {
             log.info(modelObject + " "+ model.get(modelObject));
         }
         log.info("EINDE");
+    }
+
+    private long calculateMaxGroup() {
+        Map<String,Long> map = groupRepository.findAll().stream()
+            .collect(Collectors.groupingBy(Group::getDay, Collectors.counting()));
+        return map.values().stream().max(Comparator.naturalOrder()).orElse(3L);
     }
 
 
