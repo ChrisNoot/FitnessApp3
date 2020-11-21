@@ -21,7 +21,7 @@
 </header>
 
 <body>
-<main class="main-wrapper">
+<main class="wrapper-main">
 
     <div th:each="category : ${categories}" class="draaibox">
         <a th:href="@{'/exercise/' + ${selectedUser.id}+'/'+${category}}">
