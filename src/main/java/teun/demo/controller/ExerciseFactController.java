@@ -1,14 +1,28 @@
 package teun.demo.controller;
 
-import javafx.scene.chart.Chart;
-import lombok.extern.slf4j.Slf4j;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import lombok.extern.slf4j.Slf4j;
 import teun.demo.domain.Exercise;
 import teun.demo.domain.ExerciseFact;
 import teun.demo.domain.User;
@@ -16,15 +30,8 @@ import teun.demo.repository.ExerciseFactRepository;
 import teun.demo.repository.ExerciseRepository;
 import teun.demo.repository.UserRepository;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
-
 @Slf4j
-@SessionAttributes({"selectedUser", "selectedCategory", "selectedSubCategory", "selectedExercise"})
+@SessionAttributes( { "selectedUser", "selectedCategory", "selectedSubCategory", "selectedExercise" })
 @Controller
 @RequestMapping("/exercise")
 public class ExerciseFactController {
@@ -35,8 +42,8 @@ public class ExerciseFactController {
 
     @Autowired
     public ExerciseFactController(ExerciseFactRepository exerciseFactRepo,
-                                  ExerciseRepository exerciseRepo,
-                                  UserRepository userRepo) {
+        ExerciseRepository exerciseRepo,
+        UserRepository userRepo) {
         this.exerciseFactRepository = exerciseFactRepo;
         this.exerciseRepository = exerciseRepo;
         this.userRepository = userRepo;
@@ -53,8 +60,8 @@ public class ExerciseFactController {
 
     @GetMapping("/{id}/{category}")
     public String showSubcat(@PathVariable long id,
-                             @PathVariable String category,
-                             Model model) {
+        @PathVariable String category,
+        Model model) {
         log.info("/{id}/{category}");
         log.info(category);
         Collection<String> subCategories = this.exerciseRepository.findSubCategoriesByCategory(category);
@@ -67,9 +74,9 @@ public class ExerciseFactController {
 
     @GetMapping("/{id}/{category}/{subCat}")
     public String showExercise1(@PathVariable long id,
-                                @PathVariable String category,
-                                @PathVariable String subCat,
-                                Model model) {
+        @PathVariable String category,
+        @PathVariable String subCat,
+        Model model) {
         log.info("/{id}/{category}/{subCat}");
         log.info("dit is je geselecteerde category: " + category);
         log.info("dit is je geselecteerde subcat: " + subCat);
@@ -96,6 +103,8 @@ public class ExerciseFactController {
 
     class ChartEntry {
 
+        public Long getId() {return id; }
+
         public Long getScore() {
             return score;
         }
@@ -104,14 +113,15 @@ public class ExerciseFactController {
             return date;
         }
 
+        Long id;
         Long score;
         String date;
 
-        public ChartEntry(Long score, LocalDateTime dateTime) {
+        public ChartEntry(Long id, Long score, LocalDateTime dateTime) {
+            this.id = id;
             this.score = score;
             this.date = dateTime.format(DateTimeFormatter.ISO_DATE);
         }
-
 
     }
 
@@ -127,7 +137,20 @@ public class ExerciseFactController {
         printModelContent(model.asMap());
 
         List<ExerciseFact> exerciseFacts = exerciseFactRepository.findExerciseFactByUserIdAndExerciseId(selectedUser.getId(), selectedExercise.getId());
-        model.addAttribute("exerciseFacts", exerciseFacts.stream().map(x -> new ChartEntry(x.getScore(), x.getDate())).collect(Collectors.toList()));
+        model.addAttribute("exerciseFacts", exerciseFacts.stream().map(x -> new ChartEntry(x.getId(), x.getScore(), x.getDate())).collect(Collectors.toList()));
+        return "exerciseForm";
+    }
+
+    // @DeleteMapping("/deleteFact")
+    // public String deleteFact() {
+    //     exerciseFactRepository.delete(null);
+    //     return "exerciseForm";
+    // }
+
+    @GetMapping("/deleteFact")
+    public String deleteFact(@RequestParam Long exerciseFactId) {
+        Optional<ExerciseFact> ef = exerciseFactRepository.findById(exerciseFactId);
+        ef.ifPresent(exerciseFact -> exerciseFactRepository.delete(exerciseFact));
         return "exerciseForm";
     }
 
@@ -136,7 +159,6 @@ public class ExerciseFactController {
     public Exercise findExercise() {
         return new Exercise();
     }
-
 
     @ModelAttribute(name = "categories")
     public Set<String> showCategories() {
@@ -175,6 +197,5 @@ public class ExerciseFactController {
         }
         log.info("EINDE");
     }
-
 
 }
