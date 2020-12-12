@@ -20,9 +20,9 @@
 
 <body>
 <main class="wrapper-main">
-    <div id="chart_div" style="width: 50%; height: 400px;"></div>
+    <div id="chart_div" ></div>
 
-    <div>
+    <div id="score_form">
         <body>
         <form id="scoreForm" method="POST" th:action="@{/exercise/newFact}" th:object="${exerciseFact}">
             <input type="number" th:field="*{score}" required placeholder="Score" max="10000"/>
@@ -35,7 +35,7 @@
         </body>
     </div>
 
-    <div>
+    <div id="score_table">
         <form method="GET" th:action="@{/exercise/deleteFact/}">
             <table>
                 <th>Datum</th>
@@ -64,13 +64,13 @@
         }
 
         function drawChart() {
-
             const dataTable = google.visualization.arrayToDataTable(exerciseScores);
 
             const options = {
                 title: 'Jouw Performance',
                 hAxis: {title: 'Year', titleTextStyle: {color: '#333'}},
-                vAxis: {minValue: 0}
+                vAxis: {minValue: 0},
+                backgroundColor: 'transparent'
             };
 
             const chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
