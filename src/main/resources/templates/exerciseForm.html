@@ -6,7 +6,7 @@
     <title>FitBook | Accounts</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../static/css/account.css" rel="stylesheet">
+    <link href="../static/css/exerciseForm.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,700&display=swap" rel="stylesheet">
 </head>
 
@@ -19,8 +19,7 @@
 </header>
 
 <body>
-<main class="main-wrapper">
-
+<main class="wrapper-main">
     <div id="chart_div" style="width: 50%; height: 400px;"></div>
 
     <div>
@@ -36,15 +35,20 @@
         </body>
     </div>
 
-    <table border=3px width="">
-        <th>Datum</th>
-        <th>Score</th>
-        <tr data-th-each="exerciseFact : ${exerciseFacts}">
-            <td data-th-text="${exerciseFact.date}">Zeg het maar</td>
-            <td data-th-text="${exerciseFact.score}">Dit ook</td>
-        </tr>
-    </table>
-
+    <div>
+        <form method="GET" th:action="@{/exercise/deleteFact/}">
+            <table>
+                <th>Datum</th>
+                <th>Score</th>
+                <tr data-th-each="exerciseFact : ${exerciseFacts}">
+                    <td data-th-text="${exerciseFact.date}"></td>
+                    <td data-th-text="${exerciseFact.score}"></td>
+                    <td>
+                        <input type="checkbox" th:name="exerciseFactId" th:value="${exerciseFact.id}"/></td>
+                </tr>
+            </table>
+        </form>
+    </div>
 
     <script th:inline="javascript" type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script th:inline="javascript" type="text/javascript">
@@ -55,7 +59,7 @@
             return [date, score];
         })];
 
-        if(exerciseFacts.length !== 0) {
+        if (exerciseFacts.length !== 0) {
             google.charts.setOnLoadCallback(drawChart);
         }
 
