@@ -56,7 +56,8 @@
 
         const measuringUnit = [[${selectedExercise.measuringUnit}]];
         const exerciseFacts = [[${exerciseFacts}]];
-        const exerciseScores = [["string", "Score (" + measuringUnit+")"], ...exerciseFacts.map(({date, score}) => {
+        const seriesName = "Score (" + measuringUnit+")";
+        const exerciseScores = [["string", seriesName], ...exerciseFacts.map(({date, score}) => {
             return [date, score];
         })];
 
