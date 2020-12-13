@@ -25,7 +25,7 @@
     <div id="score_form">
         <body>
         <form id="scoreForm" method="POST" th:action="@{/exercise/newFact}" th:object="${exerciseFact}">
-            <input type="number" th:field="*{score}" required placeholder="Score" max="10000"/>
+            <input type="number" th:field="*{score}" th:placeholder="'Score (' + ${selectedExercise.measuringUnit}+')'" max="10000"/>
             <span class="validationError"
                   th:if="${#fields.hasErrors('score')}"
                   th:errors="*{score}">Score error</span>
@@ -39,7 +39,7 @@
         <form method="GET" th:action="@{/exercise/deleteFact/}">
             <table>
                 <th>Datum</th>
-                <th>Score</th>
+                <th th:text="'Score (' + ${selectedExercise.measuringUnit}+')'">Score</th>
                 <tr data-th-each="exerciseFact : ${exerciseFacts}">
                     <td data-th-text="${exerciseFact.date}"></td>
                     <td data-th-text="${exerciseFact.score}"></td>
@@ -54,6 +54,7 @@
     <script th:inline="javascript" type="text/javascript">
         google.charts.load('current', {'packages': ['corechart']});
 
+        const measuringUnit = [[${selectedExercise.measuringUnit}]];
         const exerciseFacts = [[${exerciseFacts}]];
         const exerciseScores = [["string", "Score"], ...exerciseFacts.map(({date, score}) => {
             return [date, score];
@@ -78,6 +79,7 @@
                     textStyle: {color: '#FFFFFF'}
                 },
                 vAxis: {
+                    title: 'Score ('+measuringUnit+')',
                     minValue: 0,
                     titleTextStyle: {color: '#FFFFFF'},
                     textStyle: {color: '#FFFFFF'}
