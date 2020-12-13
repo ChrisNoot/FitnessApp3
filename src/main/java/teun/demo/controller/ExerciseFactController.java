@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -137,7 +139,12 @@ public class ExerciseFactController {
         printModelContent(model.asMap());
 
         List<ExerciseFact> exerciseFacts = exerciseFactRepository.findExerciseFactByUserIdAndExerciseId(selectedUser.getId(), selectedExercise.getId());
-        model.addAttribute("exerciseFacts", exerciseFacts.stream().map(x -> new ChartEntry(x.getId(), x.getScore(), x.getDate())).collect(Collectors.toList()));
+        model.addAttribute("exerciseFacts",
+            exerciseFacts.stream()
+                .sorted(Comparator.comparing(ExerciseFact::getDate).reversed())
+                .map(x -> new ChartEntry(x.getId(), x.getScore(), x.getDate()))
+                .limit(25)
+                .collect(Collectors.toList()));
         return "exerciseForm";
     }
 
