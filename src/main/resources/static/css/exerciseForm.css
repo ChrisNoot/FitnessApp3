@@ -72,7 +72,7 @@ body {
   /*        box-sizing: border-box;*/
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   height: 800px;
 }
 
@@ -113,8 +113,10 @@ body {
 
 /* FORM */
 form {
-  margin: 0 10px 0 10px;
+  margin: 20px 10px 0 10px;
   grid-gap: 30px;
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
 }
 
 input {
@@ -150,7 +152,7 @@ input:focus {
 
 #chart_div {
   grid-column: 1 / span 1;
-  grid-row: 1 / span 4;
+  grid-row: 1 / span 5;
   background-color: transparent;
 }
 
@@ -158,10 +160,11 @@ table {
   font-family: "Arial Black", Gadget, sans-serif;
   border: 2px solid #000000;
   background-color: #4A4A4A;
-  width: 100%;
-  height: 200px;
+  width: 40%;
   text-align: center;
   border-collapse: collapse;
+  grid-row: 2 / span 4;
+  grid-column: 2 / span 1;
 }
 
 table td, table th {

@@ -20,7 +20,7 @@
 
 <body>
 <main class="wrapper-main">
-    <div id="chart_div" ></div>
+    <div id="chart_div"></div>
 
     <div id="score_form">
         <body>
@@ -55,7 +55,7 @@
         google.charts.load('current', {'packages': ['corechart']});
 
         const exerciseFacts = [[${exerciseFacts}]];
-        const exerciseScores = [["string", "string"], ...exerciseFacts.map(({date, score}) => {
+        const exerciseScores = [["string", "Score"], ...exerciseFacts.map(({date, score}) => {
             return [date, score];
         })];
 
@@ -68,9 +68,20 @@
 
             const options = {
                 title: 'Jouw Performance',
-                hAxis: {title: 'Year', titleTextStyle: {color: '#333'}},
-                vAxis: {minValue: 0},
-                backgroundColor: 'transparent'
+                titleTextStyle: {color: '#FFFFFF'},
+                backgroundColor: 'transparent',
+                areaOpacity: 0.8,
+                colors: ['rgb(243, 156, 18)'],
+                hAxis: {
+                    title: 'Datum',
+                    titleTextStyle: {color: '#FFFFFF'},
+                    textStyle: {color: '#FFFFFF'}
+                },
+                vAxis: {
+                    minValue: 0,
+                    titleTextStyle: {color: '#FFFFFF'},
+                    textStyle: {color: '#FFFFFF'}
+                }
             };
 
             const chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
