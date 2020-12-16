@@ -20,7 +20,7 @@
 <div>
     <div th:each="user : ${users}" class="draaibox">
         <a th:href="@{'/exercise/' + ${user.id}+'/categories'}">
-            <img src="../static/images/avatar 1.png" class="draaibox-image">
+            <img src="../static/images/avatar2.png" class="draaibox-image">
             <h1 th:text="${user.toString()}" class="draaibox-naam"></h1>
         </a>
     </div>
