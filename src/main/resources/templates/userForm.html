@@ -19,43 +19,54 @@
 
 <main class="wrapper-main">
     <body>
+
     <form method="POST" th:action="@{/user/new}" th:object="${user}">
+        <div>
+            <input type="text" th:field="*{name}" required placeholder="Naam"/>
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('name')}"
+                  th:errors="*{name}">Name error</span>
 
-        <input type="text" th:field="*{name}" required placeholder="Naam"/>
-        <span class="validationError"
-              th:if="${#fields.hasErrors('name')}"
-              th:errors="*{name}">Name error</span>
+            <input type="text" th:field="*{username}" required placeholder="Gebruikersnaam"/>
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('username')}"
+                  th:errors="*{username}">gebruikersnaam error</span>
 
-        <input type="text" th:field="*{username}" required placeholder="Gebruikersnaam"/>
-        <span class="validationError"
-              th:if="${#fields.hasErrors('username')}"
-              th:errors="*{username}">gebruikersnaam error</span>
+            <input type="text" th:field="*{dateOfBirth}" required placeholder="Geboortedatum"/>
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('dateOfBirth')}"
+                  th:errors="*{dateOfBirth}">Geboortedatum error</span>
 
-        <input type="text" th:field="*{dateOfBirth}" required placeholder="Geboortedatum"/>
-        <span class="validationError"
-              th:if="${#fields.hasErrors('dateOfBirth')}"
-              th:errors="*{dateOfBirth}">Geboortedatum error</span>
+            <input type="text" th:field="*{email}" required placeholder="Email"/>
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('email')}"
+                  th:errors="*{email}">Email error</span>
 
-        <input type="text" th:field="*{email}" required placeholder="Email"/>
-        <span class="validationError"
-              th:if="${#fields.hasErrors('email')}"
-              th:errors="*{email}">Email error</span>
+            <input type="text" th:field="*{length}" required placeholder="Lengte"/>
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('length')}"
+                  th:errors="*{length}">lengte error</span>
 
-        <input type="text" th:field="*{length}" required placeholder="Lengte"/>
-        <span class="validationError"
-              th:if="${#fields.hasErrors('length')}"
-              th:errors="*{length}">lengte error</span>
+            <input type="text" th:field="*{weight}" required placeholder="Gewicht"/>
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('weight')}"
+                  th:errors="*{weight}">Gewicht error</span>
 
-        <input type="text" th:field="*{weight}" required placeholder="Gewicht"/>
-        <span class="validationError"
-              th:if="${#fields.hasErrors('weight')}"
-              th:errors="*{weight}">Gewicht error</span>
-
-        <input type="text" th:field="*{phoneNumber}" required placeholder="Telefoonnummer"/>
-        <span class="validationError"
-              th:if="${#fields.hasErrors('phoneNumber')}"
-              th:errors="*{phoneNumber}">Telefoonnummer error</span>
-
+            <input type="text" th:field="*{phoneNumber}" required placeholder="Telefoonnummer"/>
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('phoneNumber')}"
+                  th:errors="*{phoneNumber}">Telefoonnummer error</span>
+        </div>
+        <div>
+            <input id="male1" type="radio" th:field="*{avatar}" value="1">
+            <label for="male1"><img src="../static/images/avatar0.png"></label><br>
+            <input id="male2" type="radio" th:field="*{avatar}" value="2">
+            <label for="male2"><img src="../static/images/avatar1.png"></label><br>
+            <input id="female1" type="radio" th:field="*{avatar}" value="3">
+            <label for="female1"><img src="../static/images/avatar2.png"></label>
+            <input id="female2" type="radio" th:field="*{avatar}" value="4">
+            <label for="female2"><img src="../static/images/avatar3.png"></label>
+        </div>
         <div>
             <table border=3px width="">
                 <th>
@@ -113,8 +124,8 @@
                         <span th:text="${group.hourTime}"></span>
                     </td>
                 </tr>
-
             </table>
+
         </div>
         <input type="submit" value="ACCOUNT AANMAKEN" class="button gridspan"/>
 
