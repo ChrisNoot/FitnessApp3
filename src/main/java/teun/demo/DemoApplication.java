@@ -1,20 +1,23 @@
 package teun.demo;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import teun.demo.domain.Exercise;
+import teun.demo.domain.Exercise.Category;
 import teun.demo.domain.Exercise.MeasuringUnit;
 import teun.demo.domain.Exercise.SubCategory;
-import teun.demo.domain.Exercise.Category;
-import teun.demo.domain.Exercise;
 import teun.demo.domain.Group;
 import teun.demo.domain.User;
 import teun.demo.repository.ExerciseRepository;
 import teun.demo.repository.GroupRepository;
 import teun.demo.repository.UserRepository;
-
-import java.util.*;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -42,7 +45,7 @@ public class DemoApplication {
                 testGroups.add(group1);
                 testGroups.add(group2);
                 userRepo.save(new User(1L, new Date(), "Teun", "teunajax", "70",
-                    "180", "15-05-1992", "chris.nooteboom@gmail.com", "0618571699", testGroups)
+                    "180", "15-05-1992", "chris.nooteboom@gmail.com", "0618571699", "0", testGroups)
                 );
                 exerciseRepo.save(new Exercise(1L, "Front Squat", Category.STRENGTH, SubCategory.SQUAT, MeasuringUnit.KG));
                 exerciseRepo.save(new Exercise(2L, "Back Squat", Category.STRENGTH, SubCategory.SQUAT, MeasuringUnit.KG));
