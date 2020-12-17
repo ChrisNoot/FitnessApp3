@@ -68,8 +68,8 @@ body {
 }
 
 .wrapper-main {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+    /*-webkit-box-sizing: border-box;*/
+    /*box-sizing: border-box;*/
     overflow: hidden;
     width: 90%;
     margin: 0 auto;
@@ -123,58 +123,48 @@ body {
 
 /* FORM */
 form {
-    display: -ms-grid;
+    /*display: -ms-grid;*/
     display: grid;
-    -ms-grid-columns: 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
-    margin: 0 50px 0 auto;
+    /*-ms-grid-columns: 1fr 1fr 1fr 1fr;*/
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    /*margin: 0 0 0 0;*/
     grid-gap: 30px;
-    width: 60%;
+    width: 100%;
     height: 100%;
+    justify-content: space-between;
 }
 
 input {
     padding: 1em 2em;
     font-size: 1.5rem;
-    position: relative;
 }
 
-input:hover,
-input:focus {
-    -webkit-transform: scale(1.05);
-    transform: scale(1.05);
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-    border: 1px solid #e66422;
-}
+/*input:hover,*/
+/*input:focus {*/
+/*    -webkit-transform: scale(1.05);*/
+/*    transform: scale(1.05);*/
+/*    -webkit-transition: 0.5s;*/
+/*    transition: 0.5s;*/
+/*    border: 1px solid #e66422;*/
+/*}*/
 
-.button-form {
-    grid-column: 1/-1;
-    -ms-grid-row: 5;
-    -ms-grid-row-span: 1;
-    grid-row: 5/6;
-    font-size: 1.5rem;
-    padding: .5em 2em;
-    border: 0px;
-}
+/*.button-form {*/
+/*    grid-column: 1/-1;*/
+/*    -ms-grid-row: 5;*/
+/*    -ms-grid-row-span: 1;*/
+/*    grid-row: 5/6;*/
+/*    font-size: 1.5rem;*/
+/*    padding: .5em 2em;*/
+/*    border: 0px;*/
+/*}*/
 
 /* MEDIA QUERIES */
 @media (max-width: 1000px) {
-    .wrapper-main {
-        -ms-grid-columns: 1fr 1fr 1fr;
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    .header-title {
-        display: none;
-    }
 }
 
 @media (max-width: 600px) {
-    .wrapper-main {
-        -ms-grid-columns: 1fr 1fr;
-        grid-template-columns: 1fr 1fr;
-    }
+
 }
 
 .validationError {
@@ -185,8 +175,8 @@ table {
     font-family: "Arial Black", Gadget, sans-serif;
     border: 2px solid #000000;
     background-color: #4A4A4A;
-    width: 50%;
-    height: 200px;
+    width: 80%;
+    height: 400px;
     text-align: center;
     border-collapse: collapse;
 }
@@ -197,7 +187,7 @@ table td, table th {
 }
 
 table tbody td {
-    font-size: 13px;
+    font-size: 20px;
     color: #E6E6E6;
 }
 
@@ -211,7 +201,7 @@ table thead {
 }
 
 table thead th {
-    font-size: 15px;
+    font-size: 25px;
     font-weight: bold;
     color: #E6E6E6;
     text-align: center;
