@@ -40,6 +40,9 @@ public class User {
     @Pattern(regexp = "^06\\d{8}$", message = "Gebruik een 06 nummer")
     private String phoneNumber;
 
+    @NotNull(message = "Kies een avatar")
+    private String avatar;
+
     @PrePersist
     public void createdAt() {
         createdAt = new Date();
@@ -66,6 +69,7 @@ public class User {
                 String dateOfBirth,
                 String email,
                 String phoneNumber,
+                String avatar,
                 List<Group> groups) {
         this.id = id;
         this.createdAt = date;
@@ -76,7 +80,15 @@ public class User {
         this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.avatar = avatar;
         this.groups = groups;
+    }
+
+    public enum Avatar {
+        MALE1,
+        MALE2,
+        FEMALE1,
+        FEMALE2
     }
 
 }
