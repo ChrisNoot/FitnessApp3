@@ -25,14 +25,14 @@ import java.util.stream.Collectors;
 @Slf4j
 @Controller
 @RequestMapping("/user")
-public class NewUserController {
+public class UserController {
 
 
     private UserRepository userRepository;
     private GroupRepository groupRepository;
 
     @Autowired
-    public NewUserController(UserRepository userRepository, GroupRepository groupRepository) {
+    public UserController(UserRepository userRepository, GroupRepository groupRepository) {
         this.userRepository = userRepository;
         this.groupRepository= groupRepository;
     }
@@ -70,6 +70,7 @@ public class NewUserController {
         log.info("created allUsers");
         List<User> users = new ArrayList<>();
         this.userRepository.findAll().forEach(users::add);
+        users.sort(Comparator.comparing(User::getName));
         return users;
     }
 
