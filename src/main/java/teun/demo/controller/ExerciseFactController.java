@@ -4,14 +4,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -94,10 +92,12 @@ public class ExerciseFactController {
 
     @GetMapping("/{exerciseId}")
     public String exerciseFormInput(@PathVariable long exerciseId, Model model) {
-        log.info("/{exerciseId}/{userId}");
+        log.info("/{exerciseId}");
         Exercise exercise = this.exerciseRepository.findById(exerciseId).get();
         log.info("gekozen exercise: " + exercise.toString() + " met id: " + exercise.getId());
         model.addAttribute("selectedExercise", exercise);
+        model.addAttribute("category", exercise.getCategory());
+        model.addAttribute("subCategory", exercise.getSubCategory());
         printModelContent(model.asMap());
         return "exerciseForm";
     }
@@ -127,7 +127,7 @@ public class ExerciseFactController {
         Optional<ExerciseFact> ef = exerciseFactRepository.findById(Long.valueOf(exerciseFactId));
         ef.ifPresent(exerciseFact -> exerciseFactRepository.delete(exerciseFact));
         Exercise selectedExercise = (Exercise) model.getAttribute("selectedExercise");
-        return String.format("redirect:/exercise/%s",selectedExercise.getId());
+        return String.format("redirect:/exercise/%s", selectedExercise.getId());
     }
 
     // ModelAttributes

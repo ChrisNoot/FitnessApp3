@@ -14,7 +14,7 @@
     <a href="/" class="header-logo"><img src="../static/images/Logo-Wilgen-Training.png" alt="brand" class="logo"></a>
     <h1 class="header-title" th:text="${selectedUser.name} +', kies je score voor ' + ${selectedExercise.name}"></h1>
     <nav class="navigation">
-        <a href="/" class="button header-button">TERUG</a>
+        <a th:href="@{'/exercise/' + ${selectedUser.id} +'/' + ${category} +'/' + ${subCategory}}" class="button header-button">TERUG</a>
     </nav>
 </header>
 
