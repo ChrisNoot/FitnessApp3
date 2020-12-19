@@ -22,29 +22,12 @@
 
 <body>
 <main class="wrapper-main">
-
     <div th:each="category : ${categories}" class="draaibox">
         <a th:href="@{'/exercise/' + ${selectedUser.id}+'/'+${category}}">
             <img th:src="@{'../../static/images/'+${category}+'_w.png'}" class="draaibox-image">
             <h1 class="draaibox-naam" th:text="${#strings.capitalize(category)}"></h1>
         </a>
     </div>
-<!--
-    <div class="draaibox">
-        <a href="gymnastics.html">
-            <img src="../static/images/gymnastics_w.png" class="draaibox-image">
-            <h1 class="draaibox-naam">Skills</h1>
-        </a>
-    </div>
-
-    <div class="draaibox">
-        <a href="wod.html">
-            <img src="../static/images/workout_w.png" class="draaibox-image">
-            <h1 class="draaibox-naam">Wods</h1>
-        </a>
-    </div>
-    -->
-
 </main>
 </body>
 </html>
