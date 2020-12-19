@@ -23,13 +23,11 @@
 </header>
 
 <main class="wrapper-main">
-    <div>
-        <div th:each="user : ${recentChangedUsers}" class="draaibox">
-            <a th:href="@{'/exercise/' + ${user.id}+'/categories'}">
-                <img th:src="'../static/images/avatar' +${user.avatar}+ '.png'" class="draaibox-image">
-                <h1 th:text="${user.toString()}" class="draaibox-naam"></h1>
-            </a>
-        </div>
+    <div th:each="user : ${recentChangedUsers}" class="draaibox">
+        <a th:href="@{'/exercise/' + ${user.id}+'/categories'}">
+            <img th:src="'../static/images/avatar' +${user.avatar}+ '.png'" class="draaibox-image">
+            <h1 th:text="${user.toString()}" class="draaibox-naam"></h1>
+        </a>
     </div>
 </main>
 </body>

@@ -16,15 +16,13 @@
     </nav>
 </header>
 <main class="wrapper-main">
-<body>
-<div>
+    <body>
     <div th:each="user : ${users}" class="draaibox">
         <a th:href="@{'/exercise/' + ${user.id}+'/categories'}">
             <img th:src="'../static/images/avatar' +${user.avatar}+ '.png'" class="draaibox-image">
             <h1 th:text="${user.toString()}" class="draaibox-naam"></h1>
         </a>
     </div>
-</div>
-</body>
+    </body>
 </main>
 </html>
