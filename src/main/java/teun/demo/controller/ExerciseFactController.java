@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import lombok.extern.slf4j.Slf4j;
@@ -103,30 +102,6 @@ public class ExerciseFactController {
         return "exerciseForm";
     }
 
-    class ChartEntry {
-
-        public Long getId() {return id; }
-
-        public Long getScore() {
-            return score;
-        }
-
-        public String getDate() {
-            return date;
-        }
-
-        Long id;
-        Long score;
-        String date;
-
-        public ChartEntry(Long id, Long score, LocalDateTime dateTime) {
-            this.id = id;
-            this.score = score;
-            this.date = dateTime.format(DateTimeFormatter.ISO_DATE);
-        }
-
-    }
-
     @PostMapping("/newFact")
     public String ProcessNewFact(@ModelAttribute ExerciseFact exerciseFact, Model model) {
         log.info("/newFact");
@@ -141,24 +116,18 @@ public class ExerciseFactController {
         List<ExerciseFact> exerciseFacts = exerciseFactRepository.findExerciseFactByUserIdAndExerciseId(selectedUser.getId(), selectedExercise.getId());
         model.addAttribute("exerciseFacts",
             exerciseFacts.stream()
-                .sorted(Comparator.comparing(ExerciseFact::getDate).reversed())
                 .map(x -> new ChartEntry(x.getId(), x.getScore(), x.getDate()))
                 .limit(25)
                 .collect(Collectors.toList()));
         return "exerciseForm";
     }
 
-    // @DeleteMapping("/deleteFact")
-    // public String deleteFact() {
-    //     exerciseFactRepository.delete(null);
-    //     return "exerciseForm";
-    // }
-
-    @GetMapping("/deleteFact")
-    public String deleteFact(@RequestParam Long exerciseFactId) {
-        Optional<ExerciseFact> ef = exerciseFactRepository.findById(exerciseFactId);
+    @GetMapping("/deleteFact/{exerciseFactId}")
+    public String deleteFact(@PathVariable String exerciseFactId, Model model) {
+        Optional<ExerciseFact> ef = exerciseFactRepository.findById(Long.valueOf(exerciseFactId));
         ef.ifPresent(exerciseFact -> exerciseFactRepository.delete(exerciseFact));
-        return "exerciseForm";
+        Exercise selectedExercise = (Exercise) model.getAttribute("selectedExercise");
+        return String.format("redirect:/exercise/%s",selectedExercise.getId());
     }
 
     // ModelAttributes
@@ -205,4 +174,26 @@ public class ExerciseFactController {
         log.info("EINDE");
     }
 
+    class ChartEntry {
+
+        public Long getId() {return id; }
+
+        public Long getScore() {
+            return score;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        Long id;
+        Long score;
+        String date;
+
+        public ChartEntry(Long id, Long score, LocalDateTime dateTime) {
+            this.id = id;
+            this.score = score;
+            this.date = dateTime.format(DateTimeFormatter.ISO_DATE);
+        }
+    }
 }
