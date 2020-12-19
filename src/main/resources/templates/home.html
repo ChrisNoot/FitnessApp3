@@ -16,61 +16,22 @@
     <a href="/" class="header-logo"><img src="../static/images/Logo-Wilgen-Training.png" alt="brand" class="logo"/></a>
     <h1 class="header-title">KIES ACCOUNT</h1>
     <nav class="navigation">
-        <a th:href="@{/user/new}"  id="newUser" class="button">ACCOUNT AANMAKEN</a>
+        <a th:href="@{/user/new}" id="newUser" class="button">ACCOUNT AANMAKEN</a>
         <a th:href="@{/groups/all}" id="groups" class="button">GROEPEN</a>
         <a th:href="@{/user/all}" id="userAll" class="button">ACCOUNTS</a>
     </nav>
 </header>
 
 <main class="wrapper-main">
-    <div class="draaibox">
-        <a href="/">
-            <img src="../static/images/avatar0.png" class="draaibox-image">
-            <h1 class="draaibox-naam">Chris</h1>
-        </a>
-    </div>
-    <div class="draaibox">
-        <a th:href="categorie.html">
-            <img th:src="@{../static/images/avatar2.png}" class="draaibox-image">
-            <h1 class="draaibox-naam">Tom</h1>
-        </a>
-    </div>
-    <div class="draaibox">
-        <a th:href="categorie.html">
-            <img th:src="@{../static/images/avatar3.png}" class="draaibox-image">
-            <h1 class="draaibox-naam">Anne</h1>
-        </a>
-    </div>
-    <div class="draaibox">
-        <a href="/">
-            <img src="../static/images/avatar0.png" class="draaibox-image">
-            <h1 class="draaibox-naam">Lisa</h1>
-        </a>
-    </div>
-    <div class="draaibox">
-        <a href="/">
-            <img src="../static/images/avatar1.png" class="draaibox-image">
-            <h1 class="draaibox-naam">Freek</h1>
-        </a>
-    </div>
-    <div class="draaibox">
-        <a href="/">
-            <img src="../static/images/avatar0.png" class="draaibox-image">
-            <h1 class="draaibox-naam">Lieke</h1>
-        </a>
-    </div>
-    <div class="draaibox">
-        <a href="/">
-            <img src="../static/images/avatar0.png" class="draaibox-image">
-            <h1 class="draaibox-naam">Joris</h1>
-        </a>
-    </div>
-    <div class="draaibox">
-        <a href="/">
-            <img src="../static/images/avatar3.png" class="draaibox-image">
-            <h1 class="draaibox-naam">Johan</h1>
-        </a>
+    <div>
+        <div th:each="user : ${recentChangedUsers}" class="draaibox">
+            <a th:href="@{'/exercise/' + ${user.id}+'/categories'}">
+                <img th:src="'../static/images/avatar' +${user.avatar}+ '.png'" class="draaibox-image">
+                <h1 th:text="${user.toString()}" class="draaibox-naam"></h1>
+            </a>
+        </div>
     </div>
 </main>
 </body>
 </html>
+
