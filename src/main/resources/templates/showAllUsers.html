@@ -15,16 +15,27 @@
         <a href="/" class="button header-button">TERUG</a>
     </nav>
 </header>
-<main class="main-wrapper">
+
 <body>
-<div>
+<main class="wrapper-main">
     <div th:each="user : ${users}" class="draaibox">
         <a th:href="@{'/exercise/' +${user.id}+ '/categories'}">
             <img th:src="'../static/images/avatar' +${user.avatar}+ '.png'" class="draaibox-image">
             <h1 th:text="${user.toString()}" class="draaibox-naam"></h1>
         </a>
     </div>
-</div>
-</body>
 </main>
+</body>
+
 </html>
+
+<!--<body>-->
+<!--<main class="wrapper-main">-->
+<!--    <div th:each="category : ${categories}" class="draaibox">-->
+<!--        <a th:href="@{'/exercise/' + ${selectedUser.id}+'/'+${category}}">-->
+<!--            <img th:src="@{'../../static/images/'+${category}+'_w.png'}" class="draaibox-image">-->
+<!--            <h1 class="draaibox-naam" th:text="${#strings.capitalize(category)}"></h1>-->
+<!--        </a>-->
+<!--    </div>-->
+<!--</main>-->
+<!--</body>-->
